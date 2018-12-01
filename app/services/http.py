@@ -1,3 +1,6 @@
+import constants
+
+
 class HttpService:
 	"""
 	Basic HTTP Service
@@ -7,17 +10,17 @@ class HttpService:
 	def __init__(self):
 		pass
 
-	def get(path, query_params={}, host=, port=80, protocol="https"):
+	def get(path, query_params={}, host=constants.API_HOST, port=80, protocol="https"):
 		pass
 
-	def post(path, body=None, query_params={}, host=, port=80, protocol="https"):
+	def post(path, body=None, query_params={}, host=constants.API_HOST, port=80, protocol="https"):
 		pass
 
-	def put(path, body=None, query_params={}, host=, port=80, protocol="https"):
+	def put(path, body=None, query_params={}, host=constants.API_HOST, port=80, protocol="https"):
 		pass
 
-	def patch(path, body=None, query_params={}, host=, port=80, protocol="https"):
+	def patch(path, body=None, query_params={}, host=constants.API_HOST, port=80, protocol="https"):
 		pass
 
-	def delete(path, query_params={}, host=, port=80, protocol="https"):
+	def delete(path, query_params={}, host=constants.API_HOST, port=80, protocol="https"):
 		pass
