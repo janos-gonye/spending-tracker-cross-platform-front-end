@@ -2,7 +2,6 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from services.auth import AuthService
-from services.token import TokenService
 
 
 Builder.load_file('screens/login/login.kv')
@@ -20,6 +19,11 @@ class LoginScreen(Screen):
 		self.auth = AuthService()
 
 	def login(self, email, password):
-		if self.auth.login(email, password):
+		if '' in [email, password]:
+			return None, 'All fields required.'
+		json, error = self.auth.login(email, password)
+		if json:
 			print('Successful Login')
+			return
 		# TODO: Inform User in a Popup Window about the Error
+		print(error)

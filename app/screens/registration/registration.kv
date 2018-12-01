@@ -1,7 +1,7 @@
 #:kivy 1.10.1
 
 
-<LoginScreen>:
+<RegistrationScreen>:
 	BoxLayout:
 		orientation: 'vertical'
 		padding: 
@@ -20,19 +20,20 @@
 				hint_text: 'Password'
 				multiline: False
 				password: True
+			TextInput:
+				id: _confirm_password_input
+				hint_text: 'Confirm Password'
+				multiline: False
+				password: True
 			Button:
-				text: '[b]Login[/b]'
+				text: '[b]Registrate[/b]'
 				markup: True
-				on_release: root.login(_email_input.text, _password_input.text)
-			Label:
-				text: "[i]If you don't have an account\n[color=ff0000]click below[/color] to registrate[/i]"
-				halign: 'center'
-				markup: True
+				on_release: root.registrate(_email_input.text, _password_input.text, _confirm_password_input.text)
 		BoxLayout:
 			size_hint_y: .15
 		BoxLayout:
 			size_hint_y: .1
 			Button:
-				text: '[b][u]Create Account[/u][/b]'
+				text: '[b]Back[/b]'
 				markup: True
-				on_release: root.manager.current = 'registration'
+				on_release: root.manager.current = 'login'
