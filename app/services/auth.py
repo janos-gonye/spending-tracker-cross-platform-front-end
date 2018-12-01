@@ -6,7 +6,6 @@ from services.token import TokenService
 
 class AuthService(ApiService):
 	"""Authentication Service for handling registration, login etc."""
-	token = None
 
 	def __init__(self):
 		pass
