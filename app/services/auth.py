@@ -7,25 +7,28 @@ from services.token import TokenService
 class AuthService(ApiService):
 	"""Authentication Service for handling registration, login etc."""
 
-	def __init__(self):
-		pass
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
 
 	def registrate(self, email, password):
-		pass
+		json = {
+			'email': email,
+			'password': password
+		}
+		return super().post(path=constants.API_AUTH_REGISTRATION, json=json)
 
 	def delete_registration(self):
-		pass
+		return super().delete(path=constants.API_AUTH_DELETE)
 
 	def login(self, email, password):
 		json = {
 			'email': email,
-			'password': password, 
+			'password': password,
 		}
 		json, error = super().post(path=constants.API_AUTH_LOGIN, json=json)
-		if not json:
-			return False
-		TokenService.token = json['token']		
-		return True
+		if json:
+			TokenService.token = json['token']
+		return json, error
 
 	def logout(self):
 		TokenService.token = None
