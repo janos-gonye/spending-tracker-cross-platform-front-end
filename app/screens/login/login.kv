@@ -2,12 +2,10 @@
 
 
 <LoginScreen>:
-	email_input: _email_input
-	password_input: _password_input
 
 	BoxLayout:
 		orientation: 'vertical'
-		spacing: 50
+		padding: 
 		BoxLayout:
 			size_hint_y: .25
 		BoxLayout:
@@ -17,6 +15,7 @@
 				id: _email_input
 				hint_text: 'Email Address'
 				multiline: False
+				focus: True
 			TextInput:
 				id: _password_input
 				hint_text: 'Password'
@@ -25,8 +24,9 @@
 			Button:
 				text: '[b]Login[/b]'
 				markup: True
+				on_release: root.login(_email_input.text, _password_input.text)
 			Label:
-				text: "[i]If you don't have an account\nclick below to registrate[/i]"
+				text: "[i]If you don't have an account\n[color=ff0000]click below[/color] to registrate[/i]"
 				halign: 'center'
 				markup: True
 		BoxLayout:

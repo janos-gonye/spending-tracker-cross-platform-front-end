@@ -1,6 +1,8 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
+from services.auth import AuthService
+
 
 Builder.load_file('screens/login/login.kv')
 
@@ -12,4 +14,11 @@ class LoginScreen(Screen):
 
 	The user can login or switch to registration screen
 	"""
-	pass
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+		self.auth = AuthService()
+
+	def login(self, email, password):
+		if self.auth.login(email, password):
+			print('Login Successful')
+		# TODO: Inform User in a Popup Window about the Error

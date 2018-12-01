@@ -1,22 +1,31 @@
-class AuthService:
+import constants
+
+from services.api import ApiService
+
+
+class AuthService(ApiService):
 	"""Authentication Service for handling registration, login etc."""
-	email = None
-	token = None
 
 	def __init__(self):
 		pass
 
-	def registrate(email, password):
+	def registrate(self, email, password):
 		pass
 
-	def delete_registration():
+	def delete_registration(self):
 		pass
 
-	def login(email, password):
-		pass
+	def login(self, email, password):
+		json = {
+			'email': email,
+			'password': password, 
+		}
+		json, error = super().post(path=constants.API_AUTH_LOGIN, json=json)
+		if not json:
+			return False
+		token = json['token']
+		print(token)
+		return True
 
-	def logout():
-		pass
-
-	def store_token():
+	def logout(self):
 		pass
