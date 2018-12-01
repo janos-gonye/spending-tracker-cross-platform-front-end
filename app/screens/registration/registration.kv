@@ -8,7 +8,6 @@
 
 	BoxLayout:
 		orientation: 'vertical'
-		padding: 
 		BoxLayout:
 			size_hint_y: .25
 		BoxLayout:
@@ -30,11 +29,15 @@
 				multiline: False
 				password: True
 			Button:
-				text: '[b]Registrate[/b]'
+				text: '[b][u]Registrate[/u][/b]'
 				markup: True
 				on_release: root.registrate(_email_input.text, _password_input.text, _confirm_password_input.text)
 		BoxLayout:
 			size_hint_y: .15
+			Label:
+				text: "[i][color=ff0000]Go back[/color] to log in[/i]"
+				halign: 'center'
+				markup: True
 		BoxLayout:
 			size_hint_y: .1
 			Button:
