@@ -1,7 +1,24 @@
+from functools import wraps
+
 import constants
 
 from services.http import HttpService
+from services.token import TokenService
 from utils import create_url, succ_status
+
+
+def _attach_token(f):
+	"""
+	Attach token if exists
+	"""
+	@wraps(f)
+	def decorated(*args, **kwargs):
+		if TokenService.token:
+			if (kwargs.get('params')):
+				kwargs['params']['token'] = TokenService.token
+			kwargs['params'] = {'token': TokenService.token}
+		return f(*args, **kwargs)
+	return decorated
 
 
 class ApiService(HttpService):
@@ -16,31 +33,31 @@ class ApiService(HttpService):
 		"""
 		super().__init__(*args, **kwargs)
 
-	# Override
+	@_attach_token
 	def get(self, path, params={}):
 		url = self._get_api_url(path=path)
 		r = super().get(url=url, params=params)
 		return self._handle_unsuccessful_requests(r)
 
-	# Override
+	@_attach_token
 	def post(self, path, params={}, json=None):
 		url = self._get_api_url(path=path)
 		r = super().post(url=url, params=params, json=json)
 		return self._handle_unsuccessful_requests(r)
 
-	# Override
+	@_attach_token
 	def put(self, path, params={}, json=None):
 		url = self._get_api_url(path=path)
 		r = super().put(url=url, params=params, json=json)
 		return self._handle_unsuccessful_requests(r)
 
-	# Override
+	@_attach_token
 	def patch(self, path, params={}, json=None):
 		url = self._get_api_url(path=path)
 		r = super().patch(url=url, params=params, json=json)
 		return self._handle_unsuccessful_requests(r)
 
-	# Override
+	@_attach_token
 	def delete(self, path, params={}):
 		url = self._get_api_url(path=path)
 		r = super().delete(url=url, params=params)
