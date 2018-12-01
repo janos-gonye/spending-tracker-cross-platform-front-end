@@ -2,6 +2,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from services.auth import AuthService
+from services.token import TokenService
 
 
 Builder.load_file('screens/login/login.kv')
@@ -20,5 +21,5 @@ class LoginScreen(Screen):
 
 	def login(self, email, password):
 		if self.auth.login(email, password):
-			print('Login Successful')
+			print('Successful Login')
 		# TODO: Inform User in a Popup Window about the Error

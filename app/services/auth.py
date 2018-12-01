@@ -1,10 +1,12 @@
 import constants
 
 from services.api import ApiService
+from services.token import TokenService
 
 
 class AuthService(ApiService):
 	"""Authentication Service for handling registration, login etc."""
+	token = None
 
 	def __init__(self):
 		pass
@@ -23,9 +25,9 @@ class AuthService(ApiService):
 		json, error = super().post(path=constants.API_AUTH_LOGIN, json=json)
 		if not json:
 			return False
-		token = json['token']
-		print(token)
+		TokenService.token = json['token']		
 		return True
 
 	def logout(self):
-		pass
+		TokenService.token = None
+		return True
