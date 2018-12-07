@@ -14,9 +14,14 @@ def _attach_token(f):
 	@wraps(f)
 	def decorated(*args, **kwargs):
 		if TokenService.token:
-			if (kwargs.get('params')):
-				kwargs['params']['token'] = TokenService.token
-			kwargs['params'] = {'token': TokenService.token}
+			token = 'Bearer {token}'.format(token=TokenService.token)
+			if kwargs.get('params'):
+				if kwargs['params'].get('headers'):
+					kwargs['params']['headers']['Authorization'] = token
+				else:
+					kwargs['params']['headers'] = {'Authorization': token}
+			else:
+				kwargs['params'] = {'headers': {'Authorization': token}}
 		return f(*args, **kwargs)
 	return decorated
 
