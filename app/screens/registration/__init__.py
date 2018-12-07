@@ -24,12 +24,16 @@ class RegistrationScreen(Screen):
 		json, error = self.auth.registrate(email, password)
 		if json:
 			print('Email Sent')
-			self.clear_fields()
+			self.reset()
 			return
 		# TODO: Inform User in a Popup Window about the error
 		print(error)
 
-	def clear_fields(self):
+	def reset(self):
 		self.email_input.text = ''
 		self.password_input.text = ''
 		self.confirm_password_input.text = ''
+
+	def on_leave(self, *args, **kwargs):
+		self.reset()
+		return super().on_leave(*args, **kwargs)

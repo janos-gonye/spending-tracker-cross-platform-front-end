@@ -24,11 +24,15 @@ class LoginScreen(Screen):
 		json, error = self.auth.login(email, password)
 		if json:
 			print('Successful Login')
-			self.clear_fields()
+			self.reset()
 			return
 		# TODO: Inform User in a Popup Window about the Error
 		print(error)
 
-	def clear_fields(self):
+	def reset(self):
 		self.email_input.text = ''
 		self.password_input.text = ''
+
+	def on_leave(self, *args, **kwargs):
+		self.reset()
+		return super().on_leave(*args, **kwargs)
