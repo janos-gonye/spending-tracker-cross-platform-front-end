@@ -2,6 +2,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from services.auth import AuthService
+from uix.popups.error import ErrorPopup
 
 
 Builder.load_file('screens/registration/registration.kv')
@@ -17,17 +18,18 @@ class RegistrationScreen(Screen):
 		self.auth = AuthService()
 
 	def registrate(self, email, password, confirm_password):
-		if '' in [email, password, confirm_password]:
-			return None, 'All fields required.'
-		if password != confirm_password:		
-			return None, "Passwords don't match!"
-		json, error = self.auth.registrate(email, password)
+		if '' in (email, password, confirm_password):
+			json, error = None, 'All fields required.'
+		elif password != confirm_password:		
+			json, error = None, "Passwords don't match!"
+		else:
+			json, error = self.auth.registrate(email, password)
 		if json:
-			print('Email Sent')
 			self.reset()
+			self.manager.current = 'main'
 			return
-		# TODO: Inform User in a Popup Window about the error
-		print(error)
+		ErrorPopup(title='Registration Error',
+			       error=error).open()
 
 	def reset(self):
 		self.email_input.text = ''

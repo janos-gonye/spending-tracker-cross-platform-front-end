@@ -1,0 +1,17 @@
+#:kivy 1.10.1
+
+
+<ErrorPopup>:
+	label: _label
+	size_hint: .7, .3
+	BoxLayout:
+		orientation: 'vertical'
+		Label:
+			id: _label 
+			size_hint_y: .65
+			markup: True
+		Button:
+			text: 'Okay!'
+			size_hint: .6, .35
+			pos_hint: {'center_x': .5}
+			on_release: root.dismiss()
