@@ -1,8 +1,10 @@
+import constants
+
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from services.auth import AuthService
-from uix.popups.error import ErrorPopup
+from uix.popups.info import InfoPopup
 
 
 Builder.load_file('screens/registration/registration.kv')
@@ -25,11 +27,12 @@ class RegistrationScreen(Screen):
 		else:
 			json, error = self.auth.registrate(email, password)
 		if json:
+			InfoPopup(title='Registration Info',
+					  message=json[constants.API_DEFAULT_KEY]).open()
 			self.reset()
-			self.manager.current = 'main'
 			return
-		ErrorPopup(title='Registration Error',
-			       error=error).open()
+		InfoPopup(title='Registration Error',
+			      message=error).open()
 
 	def reset(self):
 		self.email_input.text = ''

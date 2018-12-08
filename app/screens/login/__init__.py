@@ -2,7 +2,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from services.auth import AuthService
-from uix.popups.error import ErrorPopup
+from uix.popups.info import InfoPopup
 
 
 Builder.load_file('screens/login/login.kv')
@@ -25,11 +25,11 @@ class LoginScreen(Screen):
 		else:
 			json, error = self.auth.login(email, password)
 		if json:
+			# self.manager.current = 'main'
 			self.reset()
-			self.manager.current = 'main'
 			return
-		ErrorPopup(title='Login Error',
-				   error=error).open()
+		InfoPopup(title='Login Error',
+				  message=error).open()
 
 	def reset(self):
 		self.email_input.text = ''
