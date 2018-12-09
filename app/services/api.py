@@ -3,7 +3,7 @@ from functools import wraps
 import constants
 
 from services.http import HttpService
-from services.token import TokenService
+from services.session import SessionService
 from utils import create_url, succ_status
 
 
@@ -13,8 +13,8 @@ def _attach_token(f):
 	"""
 	@wraps(f)
 	def decorated(*args, **kwargs):
-		if TokenService.token:
-			token = 'Bearer {token}'.format(token=TokenService.token)
+		if SessionService.token:
+			token = 'Bearer {token}'.format(token=SessionService.token)
 			if kwargs.get('headers'):
 				kwargs['headers']['Authorization'] = token
 			else:

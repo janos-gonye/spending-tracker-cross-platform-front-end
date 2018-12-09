@@ -1,7 +1,7 @@
 import constants
 
 from services.api import ApiService
-from services.token import TokenService
+from services.session import SessionService
 
 
 class AuthService(ApiService):
@@ -27,9 +27,9 @@ class AuthService(ApiService):
 		}
 		json, error = super().post(path=constants.API_AUTH_LOGIN, json=json)
 		if json:
-			TokenService.token = json['token']
+			SessionService.create(email=email, token=json['token'])
 		return json, error
 
 	def logout(self):
-		TokenService.token = None
+		SessionService.destroy()
 		return True
