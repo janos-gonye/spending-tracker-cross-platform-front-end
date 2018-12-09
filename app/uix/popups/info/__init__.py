@@ -2,7 +2,7 @@ from kivy.lang import Builder
 from kivy.uix.popup import Popup
 
 
-Builder.load_file('uix/popups/info/infopopup.kv')
+Builder.load_file('uix/popups/info/info.kv')
 
 
 class InfoPopup(Popup):	

@@ -1,0 +1,14 @@
+#:kivy 1.10.1
+
+
+<AppActionBar>:
+	ActionView:
+		ActionPrevious:
+			title: '[b]Spending Tracker[/b]'
+			with_previous: False
+			markup: True
+		ActionOverflow:
+		ActionButton:
+			text: '[b]Logout[/b]'
+			markup: True
+			on_release: root.logout()

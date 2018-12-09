@@ -1,0 +1,26 @@
+#:kivy 1.10.1
+#: import AppActionBar uix.actionbars.app.AppActionBar
+
+
+<MainScreen>:
+	BoxLayout:
+		orientation: 'vertical'	
+		AppActionBar:
+			screen_manager: root.manager
+		BoxLayout:
+			size_hint_y: .6
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint_y: .4
+			Button:
+				text: '[b]List Categories[/b]'
+				markup: True
+			Button:
+				text: '[b]List Transactions[/b]'
+				markup: True
+			Button:
+				text: '[b][u]Add New Transaction[/u][/b]'
+				markup: True
+			Button:
+				text: '[b][i]See Statistics[/i][/b]'
+				markup: True
