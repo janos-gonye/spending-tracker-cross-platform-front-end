@@ -25,7 +25,7 @@ class LoginScreen(Screen):
 		else:
 			json, error = self.auth.login(email, password)
 		if json:
-			# self.manager.current = 'main'
+			self.manager.current = 'main'
 			self.reset()
 			return
 		InfoPopup(title='Login Error',
