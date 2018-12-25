@@ -18,7 +18,7 @@ class AuthService(ApiService):
 		return super().post(path=constants.API_AUTH_REGISTRATION, json=json)
 
 	def delete_registration(self):
-		return super().delete(path=constants.API_AUTH_DELETE)
+		return super().delete(path=constants.API_AUTH_REGISTRATION)
 
 	def login(self, email, password):
 		json = {
