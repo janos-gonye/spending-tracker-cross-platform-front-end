@@ -74,6 +74,8 @@ class ApiService(HttpService):
 			path=path)
 
 	def _handle_request(self, r):
+		if r is None:
+			return None, 'Error Occured When Connecting to Server'
 		if succ_status(r.status_code):
 			return r.json(), None
 		json = r.json()
