@@ -1,4 +1,5 @@
 from functools import wraps
+from json.decoder import JSONDecodeError
 
 import constants
 
@@ -74,11 +75,15 @@ class ApiService(HttpService):
 			path=path)
 
 	def _handle_request(self, r):
+		error = 'Error Occured When Connecting to Server'
 		if r is None:
-			return None, 'Error Occured When Connecting to Server'
-		if succ_status(r.status_code):
-			return r.json(), None
-		json = r.json()
-		if json:
-			return None, json[constants.API_DEFAULT_KEY]
-		return None, 'Error Occured When Connecting to Server'
+			return None, error
+		try:
+			if succ_status(r.status_code):
+				return r.json(), None
+			json = r.json()
+			if json:
+				return None, json[constants.API_DEFAULT_KEY]
+		except JSONDecodeError:
+			return None, error
+		return None, error
