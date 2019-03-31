@@ -4,7 +4,7 @@
 
 <MainScreen>:
 	BoxLayout:
-		orientation: 'vertical'	
+		orientation: 'vertical'
 		AppActionBar:
 			screen_manager: root.manager
 		BoxLayout:
@@ -15,6 +15,7 @@
 			Button:
 				text: '[b]Manage Categories[/b]'
 				markup: True
+				on_release: root.manager.current = 'category'
 			Button:
 				text: '[b]Manage Transactions[/b]'
 				markup: True
