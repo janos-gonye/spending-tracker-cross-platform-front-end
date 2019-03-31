@@ -1,5 +1,6 @@
 import constants
 
+from models.category import Category
 from services.api import ApiService
 from services.exceptions import ConnectionError_
 
@@ -18,7 +19,10 @@ class CategoryService(ApiService):
 		payload = response[0]
 		if payload is None:
 			raise ConnectionError_(response[1])
-		return payload
+		result = []
+		for cat_json in payload['categories']:
+			result += [Category.from_json(json=cat_json)]
+		return result
 
 	def get(self, id):
 		pass
