@@ -1,17 +1,17 @@
 class CategoryService:
 	"""Category Service for handling CRUD operations on categories"""
 
-	def create(category):
+	def create(self, category):
 		pass
 
-	def get_all():
+	def get_all(self):
 		pass
 
-	def get(id):
+	def get(self, id):
 		pass
 
-	def update(category):
+	def update(self, category):
 		pass
 
-	def delete(category):
+	def delete(self, category):
 		pass
