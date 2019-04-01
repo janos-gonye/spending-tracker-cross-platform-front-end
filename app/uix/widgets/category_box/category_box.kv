@@ -1,0 +1,32 @@
+#:kivy 1.10.0
+
+<CategoryBox>:
+	title: _title
+	description: _description
+	size_hint_x: 1
+	size_hint_y: None
+	height: 10
+	BoxLayout:
+		height: 10
+		Button:
+			font_size: 15
+			size_hint_x: .2
+			text: '[b][i]Update[/i][/b]'
+			markup: True
+		BoxLayout:
+			size_hint_x: .6
+			BoxLayout:
+				orientation: 'vertical'
+				Label:
+					id: _title
+					halign: 'left'
+					markup: True
+				Label:
+					id: _description
+					halign: 'left'
+					markup: True
+		Button:
+			size_hint_x: .2
+			font_size: 15
+			text: '[b][i]Remove[/i][/b]'
+			markup: True			
