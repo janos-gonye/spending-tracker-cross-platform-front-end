@@ -3,13 +3,23 @@
 
 
 <CategoryScreen>:
+	list: _list
 	BoxLayout:
 		orientation: 'vertical'
 		AppActionBar:
 			screen_manager: root.manager
 		BoxLayout:
 			size_hint_y: .8
-			# TODO: Add Category List Here
+			ScrollView:
+				do_scroll_x: False
+				size: self.size
+				size_hint_x: 1
+				StackLayout:
+					id: _list
+					size_hint_x: 1
+					size_hint_y: None
+					spacing: 5
+					# cols: 1
 		BoxLayout:
 			orientation: 'vertical'
 			size_hint_y: .2
