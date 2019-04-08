@@ -2,7 +2,7 @@ from kivy.lang import Builder
 from kivy.uix.widget import Widget
 
 
-Builder.load_file('uix/widgets/category_box./category_box.kv')
+Builder.load_file('uix/widgets/category_box/category_box.kv')
 
 
 class CategoryBox(Widget):
