@@ -15,10 +15,9 @@ class CategoryService(ApiService):
 		pass
 
 	def get_all(self):
-		response = super().get(path=constants.API_CATEGORIES)
-		payload = response[0]
+		payload, error = super().get(path=constants.API_CATEGORIES)
 		if payload is None:
-			raise ConnectionError_(response[1])
+			raise ConnectionError_(error)
 		result = []
 		for cat_json in payload['categories']:
 			result += [Category.from_json(json=cat_json)]
