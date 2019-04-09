@@ -7,3 +7,15 @@
 		orientation: 'vertical'
 		AppActionBar:
 			screen_manager: root.manager
+        BoxLayout:
+            size_hint_y: .8
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: .2
+            Button:
+                text: '[b]Create[/b]'
+                markup: True
+            Button:
+                text: '[b]Cancel[/b]'
+                markup: True
+                on_release: root.manager.current = 'category'
