@@ -3,12 +3,27 @@
 
 
 <CategoryCreateScreen>:
+    title_input: _title_input
+    description_input: _description_input
 	BoxLayout:
 		orientation: 'vertical'
 		AppActionBar:
 			screen_manager: root.manager
         BoxLayout:
-            size_hint_y: .8
+            size_hint_y: .3
+            orientation: 'vertical'
+            Label:
+                text: '[b]Create New Category[/b]'
+                markup: True
+            TextInput:
+                id: _title_input
+                multiline: False
+                hint_text: 'Title'
+            TextInput:
+                id: _description_input
+                hint_text: 'Description'
+        BoxLayout:
+            size_hint_y: .5
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: .2
