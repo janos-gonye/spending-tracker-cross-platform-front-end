@@ -32,6 +32,9 @@ class CategoryScreen(Screen):
 		else:
 			self._list_categories()
 
+	def on_leave(self):
+		self.list.clear_widgets()
+
 	def _list_categories(self):
 		for category in self.categories:
 			self.list.add_widget(CategoryBox(category=category))
