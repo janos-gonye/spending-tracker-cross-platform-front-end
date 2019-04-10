@@ -1,9 +1,9 @@
 from kivy.lang import Builder
-from kivy.uix.screenmanager import Screen
 
+from screens.category.base import CategoryScreen
 
 Builder.load_file('screens/category/create/category_create.kv')
 
 
-class CategoryCreateScreen(Screen):
+class CategoryCreateScreen(CategoryScreen):
     pass
