@@ -1,16 +1,18 @@
 #:kivy 1.10.1
 #: import AppActionBar uix.actionbars.app.AppActionBar
+#: import SelectButton uix.widgets.select_button.SelectButton
 
 
 <CategoryCreateScreen>:
     title_input: _title_input
     description_input: _description_input
+    select: _select
 	BoxLayout:
 		orientation: 'vertical'
 		AppActionBar:
 			screen_manager: root.manager
         BoxLayout:
-            size_hint_y: .3
+            size_hint_y: .4
             orientation: 'vertical'
             Label:
                 text: '[b]Create New Category[/b]'
@@ -22,8 +24,12 @@
             TextInput:
                 id: _description_input
                 hint_text: 'Description'
+            SelectButton:
+                id: _select
+                text: "Select Parent Category"
+                attr_name: 'title'
         BoxLayout:
-            size_hint_y: .5
+            size_hint_y: .4
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: .2
