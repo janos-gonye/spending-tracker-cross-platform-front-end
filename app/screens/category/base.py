@@ -17,6 +17,7 @@ class CategoryScreen(Screen):
             self.categories = self.service.get_all()
         except ConnectionError_ as err:
             self.conn_error = err
+            self.categories = []
     
     def on_enter(self):
         if self.conn_error:
