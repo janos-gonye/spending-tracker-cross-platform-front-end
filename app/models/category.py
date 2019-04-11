@@ -19,6 +19,7 @@ class Category:
 			self.parent = Category.from_json(parent)
 		self.created_at = created_at
 		self.updated_at = updated_at
+		self.history = self._history()
 
 	def as_dict(self):
 		return {
@@ -39,3 +40,13 @@ class Category:
 			created_at=json['created_at'],
 			updated_at=json['updated_at']
 		)
+
+	def _history(self, separator='/'):
+		history = self.title
+		parent = self.parent
+		while parent:
+			history = parent.title + separator + history
+			if not parent.parent:
+				break
+			parent = parent.parent
+		return history
