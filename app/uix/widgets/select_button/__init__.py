@@ -3,11 +3,8 @@ from functools import partial
 from kivy.uix.button import Button
 from kivy.uix.dropdown import DropDown
 
-from kivy.properties import StringProperty
-
 
 class SelectButton(Button):
-    attr_name = StringProperty()
 
     def init(self, elements):
         dropdown = DropDown()
