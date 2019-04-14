@@ -4,7 +4,7 @@ from datetime import timezone
 
 class Category:
 
-	def __init__(self, id, title, description, parent, created_at, updated_at):
+	def __init__(self, id, title, description, parent, created_at=None, updated_at=None):
 		"""
 		Parent can be both 'Category' instance or JSON object.
 		"""
@@ -28,6 +28,13 @@ class Category:
 			'parent': self.parent,
 			'created_at': self.created_at,
 			'updated_at': self.updated_at,
+		}
+
+	def as_create_json(self):
+		return {
+			'title': self.title,
+			'description': self.description,
+			'parent_id': None if not self.parent else self.parent.id
 		}
 
 	@staticmethod
