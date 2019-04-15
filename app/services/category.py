@@ -34,4 +34,8 @@ class CategoryService(ApiService):
 		pass
 
 	def delete(self, category):
-		pass
+		path = f"{constants.API_CATEGORIES}/{category.id}"
+		payload, error = super().delete(path=path)
+		if payload is None:
+			raise ConnectionError_(error)
+		return Category.from_json(json=payload['category'])
