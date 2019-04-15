@@ -12,7 +12,11 @@ class CategoryService(ApiService):
 		super().__init__(*args, **kwargs)
 
 	def create(self, category):
-		pass
+		payload, error = super().post(path=constants.API_CATEGORIES,
+									  json=category.as_create_json())
+		if payload is None:
+			raise ConnectionError_(error)
+		return Category.from_json(json=payload['category'])
 
 	def get_all(self):
 		payload, error = super().get(path=constants.API_CATEGORIES)
