@@ -21,5 +21,5 @@ class CategoryScreen(Screen):
     
     def on_enter(self):
         if self.conn_error:
-            InfoPopup(title='Connection Error',
+            InfoPopup(title='Error',
                       message=str(self.conn_error)).open()

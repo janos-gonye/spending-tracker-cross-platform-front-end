@@ -23,7 +23,7 @@
                 hint_text: 'Title'
             TextInput:
                 id: _description_input
-                hint_text: 'Description'
+                hint_text: 'Description (optional)'
             Label:
                 text: '[b]Select Supercategory (optional)[/b]'
                 markup: True
@@ -41,7 +41,8 @@
             Button:
                 text: '[b]Create[/b]'
                 markup: True
+                on_release: root.submit()
             Button:
                 text: '[b]Cancel[/b]'
                 markup: True
-                on_release: root.manager.current = 'category'
+                on_release: root.manager.current = 'category_list'
