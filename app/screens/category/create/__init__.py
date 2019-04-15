@@ -32,5 +32,10 @@ class CategoryCreateScreen(CategoryScreen):
             return None
         InfoPopup(title='Success',
                   message="New Category Successfully Created").open()
+        self.reset_fields()
         self.manager.current = 'category_list'
         return created
+
+    def reset_fields(self):
+        self.title_input.text = ""
+        self.description_input.text = ""
