@@ -21,15 +21,6 @@ class Category:
 		self.updated_at = updated_at
 		self.history = self._history()
 
-	def as_dict(self):
-		return {
-			'id': self.id,
-			'description': self.description,
-			'parent': self.parent,
-			'created_at': self.created_at,
-			'updated_at': self.updated_at,
-		}
-
 	def as_create_json(self):
 		return {
 			'title': self.title,
