@@ -19,7 +19,7 @@ class SpendingTrackerApp(App):
 		screen_manager.add_widget(LoginScreen(name='login'))
 		screen_manager.add_widget(RegistrationScreen(name='registration'))
 		screen_manager.add_widget(MainScreen(name='main'))
-		screen_manager.add_widget(CategoryListScreen(name='category'))
+		screen_manager.add_widget(CategoryListScreen(name='category_list'))
 		screen_manager.add_widget(CategoryCreateScreen(name='category_create'))
 		return screen_manager
 
