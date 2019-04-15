@@ -31,6 +31,6 @@ class CategoryCreateScreen(CategoryScreen):
                       message=str(err)).open()
             return None
         InfoPopup(title='Success',
-                  message="New Category Succesfully Created").open()
+                  message="New Category Successfully Created").open()
         self.manager.current = 'category_list'
         return created
