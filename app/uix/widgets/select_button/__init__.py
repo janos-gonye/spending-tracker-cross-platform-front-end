@@ -31,7 +31,6 @@ class SelectButton(Button):
 
     @property
     def selected(self):
-        print(self._selected)
         return self._selected
 
     def _init_dropdown(self):
