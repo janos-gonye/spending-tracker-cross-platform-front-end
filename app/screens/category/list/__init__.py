@@ -37,15 +37,18 @@ class CategoryListScreen(CategoryScreen):
 				InfoPopup(title='Error',
 						  message=str(err)).open()
 			else:
-				self.list.remove_widget(widget)
+				self.fetch_categories()
+				self.show_if_error()
+				self.list_categories()
 		confirm(title="Delete Category",
-				question="Are you sure?",
+				question=f"Are you sure?\n({category.history})",
 				confirmed=delete)
 
 	def update_category(self, category):
 		print(category)
 
 	def list_categories(self):
+		self.list.clear_widgets()
 		for category in self.categories:
 			cat_box = CategoryBox(category=category)
 			cat_box.remove_btn.on_release = partial(self.delete_category,
