@@ -3,9 +3,12 @@
 <CategoryBox>:
 	title: _title
 	description: _description
+	remove_btn: _remove_btn
+	update_btn: _update_btn
 	size_hint_y: None
 	height: 50
 	Button:
+		id: _update_btn
 		size_hint_x: .3
 		text: '[b][i]Update[/i][/b]'
 		markup: True
@@ -24,6 +27,7 @@
 				valign: 'middle'
 				markup: True
 	Button:
+		id: _remove_btn
 		size_hint_x: .3
 		text: '[b][i]Remove[/i][/b]'
 		markup: True
