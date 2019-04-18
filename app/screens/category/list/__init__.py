@@ -4,6 +4,9 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from screens.category.base import CategoryScreen
+from services.exceptions import ConnectionError_
+from uix.popups.confirm.helpers import confirm
+from uix.popups.info import InfoPopup
 from uix.widgets.category_box import CategoryBox
 
 
@@ -26,8 +29,18 @@ class CategoryListScreen(CategoryScreen):
 	def on_leave(self):
 		self.list.clear_widgets()
 
-	def delete_category(self, category):
-		print(category)
+	def delete_category(self, widget, category):
+		def delete():
+			try:
+				deleted = self.service.delete(category=category)
+			except ConnectionError_ as err:
+				InfoPopup(title='Error',
+						  message=str(err)).open()
+			else:
+				self.list.remove_widget(widget)
+		confirm(title="Delete Category",
+				question="Are you sure?",
+				confirmed=delete)
 
 	def update_category(self, category):
 		print(category)
@@ -36,6 +49,7 @@ class CategoryListScreen(CategoryScreen):
 		for category in self.categories:
 			cat_box = CategoryBox(category=category)
 			cat_box.remove_btn.on_release = partial(self.delete_category,
+													widget=cat_box,
 													category=category)
 			cat_box.update_btn.on_release = partial(self.update_category,
 													category=category)

@@ -3,7 +3,7 @@ from kivy.uix.popup import Popup
 from uix.popups.confirm import ConfirmPopup
 
 
-def confirm(title, question, confirmed, not_confirmed):
+def confirm(title, question, confirmed=None, not_confirmed=None):
 	"""
 	title: title
 	question: question asked from the user
@@ -11,9 +11,9 @@ def confirm(title, question, confirmed, not_confirmed):
 	not_confirmed: callback, if user clicks 'no'
 	"""
 	def _on_answer(instance, answer):
-		if (answer):
+		if confirmed and answer:
 			confirmed()
-		else:
+		elif not_confirmed and not answer:
 			not_confirmed()
 		# Close the window anyway
 		popup.dismiss()
