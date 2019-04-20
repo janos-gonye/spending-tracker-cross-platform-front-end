@@ -39,3 +39,4 @@ class CategoryCreateScreen(CategoryScreen):
     def reset_fields(self):
         self.title_input.text = ""
         self.description_input.text = ""
+        self.select.selected = None
