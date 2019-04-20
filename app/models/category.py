@@ -40,6 +40,14 @@ class Category:
 			updated_at=json['updated_at']
 		)
 
+	def get_ancestors(self):
+		ancestors = []
+		parent = self.parent
+		while parent:
+			ancestors.append(parent)
+			parent = parent.parent
+		return ancestors
+
 	def _history(self, separator='/'):
 		history = self.title
 		parent = self.parent
