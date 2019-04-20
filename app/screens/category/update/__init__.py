@@ -26,7 +26,7 @@ class CategoryUpdateScreen(CategoryScreen):
 
     def submit(self):
         category = Category(
-            id=self._category.id,
+            id=self.category.id,
             title=self.title_input.text,
             description=self.description_input.text,
             parent=self.select.selected
