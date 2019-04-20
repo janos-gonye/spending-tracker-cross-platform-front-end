@@ -13,7 +13,7 @@ class CategoryService(ApiService):
 
 	def create(self, category):
 		payload, error = super().post(path=constants.API_CATEGORIES,
-									  json=category.as_create_json())
+									  json=category.as_json())
 		if payload is None:
 			raise ConnectionError_(error)
 		return Category.from_json(json=payload['category'])
