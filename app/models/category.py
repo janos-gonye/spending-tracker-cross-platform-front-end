@@ -21,8 +21,9 @@ class Category:
 		self.updated_at = updated_at
 		self.history = self._history()
 
-	def as_create_json(self):
+	def as_json(self):
 		return {
+			'id': self.id,
 			'title': self.title,
 			'description': self.description,
 			'parent_id': None if not self.parent else self.parent.id
