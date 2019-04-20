@@ -16,13 +16,8 @@ class CategoryUpdateScreen(CategoryScreen):
         if not self.conn_error:
             self.title_input.text = self.category.title
             self.description_input.text = self.category.description
+            self.select.init(elements=self.get_elements())
             self.select.selected = self.category.parent
-
-    def on_enter(self):
-        super().on_enter()
-        if self.conn_error:
-            return
-        self.select.init(elements=self.get_elements())
 
     def submit(self):
         category = Category(
