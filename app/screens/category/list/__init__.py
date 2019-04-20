@@ -45,7 +45,8 @@ class CategoryListScreen(CategoryScreen):
 				confirmed=delete)
 
 	def update_category(self, category):
-		print(category)
+		self.manager.get_screen('category_update').category = category
+		self.manager.current = 'category_update'
 
 	def list_categories(self):
 		self.list.clear_widgets()

@@ -1,0 +1,48 @@
+#:kivy 1.10.1
+#: import AppActionBar uix.actionbars.app.AppActionBar
+#: import SelectButton uix.widgets.select_button.SelectButton
+
+
+<CategoryUpdateScreen>:
+    title_input: _title_input
+    description_input: _description_input
+    select: _select
+	BoxLayout:
+		orientation: 'vertical'
+		AppActionBar:
+			screen_manager: root.manager
+        BoxLayout:
+            size_hint_y: .5
+            orientation: 'vertical'
+            Label:
+                text: '[b]Update Category[/b]'
+                markup: True
+            TextInput:
+                id: _title_input
+                multiline: False
+                hint_text: 'Title'
+            TextInput:
+                id: _description_input
+                hint_text: 'Description (optional)'
+            Label:
+                text: '[b]Select Supercategory (optional)[/b]'
+                markup: True
+            SelectButton:
+                id: _select
+                text: "None Selected"
+                attr_name: 'history'
+                allow_null: True
+                null_text: "None Selected"
+        BoxLayout:
+            size_hint_y: .3
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: .2
+            Button:
+                text: '[b]Update[/b]'
+                markup: True
+                on_release: root.submit()
+            Button:
+                text: '[b]Cancel[/b]'
+                markup: True
+                on_release: root.manager.current = 'category_list'

@@ -5,8 +5,9 @@ from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.screenmanager import SwapTransition
 
-from screens.category.list import CategoryListScreen
 from screens.category.create import CategoryCreateScreen
+from screens.category.list import CategoryListScreen
+from screens.category.update import CategoryUpdateScreen
 from screens.login import LoginScreen
 from screens.main import MainScreen
 from screens.registration import RegistrationScreen
@@ -21,6 +22,7 @@ class SpendingTrackerApp(App):
 		screen_manager.add_widget(MainScreen(name='main'))
 		screen_manager.add_widget(CategoryListScreen(name='category_list'))
 		screen_manager.add_widget(CategoryCreateScreen(name='category_create'))
+		screen_manager.add_widget(CategoryUpdateScreen(name='category_update'))
 		return screen_manager
 
 
