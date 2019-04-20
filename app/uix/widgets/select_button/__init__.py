@@ -36,10 +36,12 @@ class SelectButton(Button):
     def selected(self, element):
         if element is None:
             self._select(text=self.null_text, elm=None)
+            return
         for elm in self._elements:
             attr_value = getattr(elm, self.attr_name)
             if attr_value == getattr(element, self.attr_name):
                 self._select(text=attr_value, elm=elm)
+                return
 
     def _init_dropdown(self):
         self._dropdown = DropDown()
