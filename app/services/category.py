@@ -28,14 +28,26 @@ class CategoryService(ApiService):
 		return result
 
 	def get(self, id):
-		pass
+		path = self._get_path(category=category)
+		payload, error = super().get(path=path)
+		if payload is None:
+			raise ConnectionError_(error)
+		return Category.from_json(json=payload['category'])
 
 	def update(self, category):
-		pass
+		path = self._get_path(category=category)
+		payload, error = super().patch(path=path,
+									   json=category.as_json())
+		if payload is None:
+			raise ConnectionError_(error)
+		return Category.from_json(json=payload['category'])
 
 	def delete(self, category):
-		path = f"{constants.API_CATEGORIES}/{category.id}"
+		path = self._get_path(category=category)
 		payload, error = super().delete(path=path)
 		if payload is None:
 			raise ConnectionError_(error)
 		return Category.from_json(json=payload['category'])
+
+	def _get_path(self, category):
+		return f"{constants.API_CATEGORIES}/{category.id}"
