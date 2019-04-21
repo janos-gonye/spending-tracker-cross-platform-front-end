@@ -9,6 +9,5 @@ class CategoryBox(BoxLayout):
 
 	def __init__(self, category, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.category = category
 		self.title.text = f"[b]{category.history}[/b]"
 		self.description.text = f"[b]{category.description}[/b]"
