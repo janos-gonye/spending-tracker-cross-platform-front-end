@@ -71,4 +71,4 @@ class SelectButton(Button):
             except TypeError:
                 return getattr(elm, self.attr_name)
         else:
-            return elm
+            return str(elm)
