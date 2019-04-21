@@ -1,15 +1,20 @@
 #:kivy 1.10.1
-#: import AppActionBar uix.actionbars.app.AppActionBar
+#:import AppActionBar uix.actionbars.app.AppActionBar
+#:import TransactionFilter uix.widgets.transaction_filter.TransactionFilter
 
 
 <TransactionListScreen>:
+	filter: _filter
 	list: _list
 	BoxLayout:
 		orientation: 'vertical'
 		AppActionBar:
 			screen_manager: root.manager
+		TransactionFilter:
+			id: _filter
+			size_hint_y: .1
 		BoxLayout:
-			size_hint_y: .8
+			size_hint_y: .7
 			ScrollView:
 				do_scroll_x: False
 				size: self.size
