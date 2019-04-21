@@ -1,0 +1,29 @@
+#:kivy 1.10.1
+#: import AppActionBar uix.actionbars.app.AppActionBar
+
+
+<TransactionListScreen>:
+	list: _list
+	BoxLayout:
+		orientation: 'vertical'
+		AppActionBar:
+			screen_manager: root.manager
+		BoxLayout:
+			size_hint_y: .8
+			ScrollView:
+				do_scroll_x: False
+				size: self.size
+				StackLayout:
+					id: _list
+					size_hint_y: None
+					spacing: 5
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint_y: .2
+			Button:
+				text: '[b]New Transaction[/b]'
+				markup: True
+			Button:
+				text: '[b]Back to Main Menu[/b]'
+				markup: True
+				on_release: root.manager.current = 'main'
