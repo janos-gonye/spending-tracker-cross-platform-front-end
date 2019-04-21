@@ -1,0 +1,46 @@
+#:kivy 1.10.1
+
+
+<TransactionBox>:
+	category: _category
+	comment: _comment
+	date: _date
+	amount: _amount
+	remove_btn: _remove_btn
+	update_btn: _update_btn
+	size_hint_y: None
+	height: 80
+	Button:
+		id: _update_btn
+		size_hint_x: .3
+		text: '[b][i]Update[/i][/b]'
+		markup: True
+	BoxLayout:
+		size_hint_x: .4
+		BoxLayout:
+			orientation: 'vertical'
+			Label:
+				id: _category
+				halign: 'left'
+				valign: 'middle'
+				markup: True
+			Label:
+				id: _comment
+				halign: 'left'
+				valign: 'middle'
+				markup: True
+			Label:
+				id: _date
+				halign: 'left'
+				valign: 'middle'
+				markup: True
+			Label:
+				id: _amount
+				halign: 'left'
+				valign: 'middle'
+				markup: True
+	Button:
+		id: _remove_btn
+		size_hint_x: .3
+		text: '[b][i]Remove[/i][/b]'
+		markup: True
