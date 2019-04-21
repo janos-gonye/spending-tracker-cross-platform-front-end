@@ -8,7 +8,7 @@ from kivy.properties import StringProperty
 
 class SelectButton(Button):
     allow_null = BooleanProperty(False)
-    attr_name = StringProperty('id')
+    attr_name = None
     null_text = StringProperty('None')
 
     def __init__(self, *args, **kwargs):
@@ -23,7 +23,7 @@ class SelectButton(Button):
         if self.allow_null:
             self._add_null_btn()
         for elm in elements:
-            text = getattr(elm, self.attr_name)
+            text = self._get_value(elm)
             btn = Button(text=text, size_hint_y=None, height=44)
             btn.bind(on_release=partial(self._on_select_elm, elm=elm))
             self._dropdown.add_widget(btn)
@@ -38,8 +38,8 @@ class SelectButton(Button):
             self._select(text=self.null_text, elm=None)
             return
         for elm in self._elements:
-            attr_value = getattr(elm, self.attr_name)
-            if attr_value == getattr(element, self.attr_name):
+            attr_value = self._get_value(elm)
+            if attr_value == self._get_value(element):
                 self._select(text=attr_value, elm=elm)
                 return
 
@@ -63,3 +63,12 @@ class SelectButton(Button):
 
     def _on_null_select(self, btn):
         self._select(text=btn.text, elm=None)
+
+    def _get_value(self, elm):
+        if self.attr_name is not None:
+            try:
+                return elm[self.attr_name]
+            except TypeError:
+                return getattr(elm, self.attr_name)
+        else:
+            return elm
