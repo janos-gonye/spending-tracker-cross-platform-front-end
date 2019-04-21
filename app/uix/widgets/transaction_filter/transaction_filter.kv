@@ -1,0 +1,22 @@
+#:kivy 1.10.1
+#:import DatePicker uix.widgets.date_picker.DatePicker
+#:import SelectButton uix.widgets.select_button.SelectButton
+
+
+<TransactionFilter>:
+	category_selector: _category_selector
+	from_selector: _from_selector
+	to_selector: _to_selector
+	SelectButton:
+		id: _category_selector
+		size_hint_x: .618
+		allow_null: True
+		attr_name: 'history'
+		null_text: 'All'
+	BoxLayout:
+		size_hint_x: .382
+		orientation: 'vertical'
+		DatePicker:
+			id: _from_selector
+		DatePicker:
+			id: _to_selector
