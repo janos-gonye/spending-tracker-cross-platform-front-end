@@ -32,7 +32,7 @@ class CategoryListScreen(CategoryScreen):
 	def delete_category(self, widget, category):
 		def delete():
 			try:
-				deleted = self.service.delete(category=category)
+				self.service.delete(category=category)
 			except ConnectionError_ as err:
 				InfoPopup(title='Error',
 						  message=str(err)).open()
