@@ -16,7 +16,7 @@ class TransactionListScreen(CategoryScreen):
 
 	def on_enter(self):
 		super().on_enter()
-		if not self.conn_error:
+		if not self.cat_conn_error:
 			self.filter.init(categories=self.categories)
 
 	def init_scroll_list(self):
