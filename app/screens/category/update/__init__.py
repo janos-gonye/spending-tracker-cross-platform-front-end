@@ -13,7 +13,7 @@ class CategoryUpdateScreen(CategoryScreen):
 
     def on_pre_enter(self):
         super().on_pre_enter()
-        if not self.conn_error:
+        if not self.cat_conn_error:
             self.title_input.text = self.category.title
             self.description_input.text = self.category.description
             self.select.init(elements=self.get_elements())

@@ -13,7 +13,7 @@ class CategoryCreateScreen(CategoryScreen):
 
     def on_pre_enter(self):
         super().on_pre_enter()
-        if self.conn_error:
+        if self.cat_conn_error:
             return
         self.select.init(elements=self.categories)
 

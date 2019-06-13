@@ -23,7 +23,7 @@ class CategoryListScreen(CategoryScreen):
 
 	def on_enter(self):
 		super().on_enter()
-		if not self.conn_error:
+		if not self.cat_conn_error:
 			self.list_categories()
 
 	def on_leave(self):
