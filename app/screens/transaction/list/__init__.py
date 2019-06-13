@@ -14,9 +14,14 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 		super().__init__(*args, **kwargs)
 		self.init_scroll_list()
 
-	def on_enter(self):
+	def on_pre_enter(self):
 		self.fetch_categories()
-		if not self.cat_conn_error:
+
+	def on_enter(self):
+		if self.cat_conn_error:
+			InfoPopup(title='Error',
+					  message=str(self.cat_conn_error)).open()
+		else:
 			self.filter.init(categories=self.categories)
 
 	def init_scroll_list(self):
