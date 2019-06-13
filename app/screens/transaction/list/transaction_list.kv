@@ -6,6 +6,7 @@
 <TransactionListScreen>:
 	filter: _filter
 	list: _list
+	list_btn: _list_btn
 	BoxLayout:
 		orientation: 'vertical'
 		AppActionBar:
@@ -14,7 +15,7 @@
 			id: _filter
 			size_hint_y: .1
 		BoxLayout:
-			size_hint_y: .7
+			size_hint_y: .6
 			ScrollView:
 				do_scroll_x: False
 				size: self.size
@@ -24,7 +25,11 @@
 					spacing: 5
 		BoxLayout:
 			orientation: 'vertical'
-			size_hint_y: .2
+			size_hint_y: .3
+			Button:
+				id: _list_btn
+				text: '[b]List[/b]'
+				markup: True
 			Button:
 				text: '[b]New Transaction[/b]'
 				markup: True
