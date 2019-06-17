@@ -6,7 +6,6 @@
 <TransactionListScreen>:
 	filter: _filter
 	list: _list
-	list_btn: _list_btn
 	BoxLayout:
 		orientation: 'vertical'
 		AppActionBar:
@@ -27,7 +26,6 @@
 			orientation: 'vertical'
 			size_hint_y: .3
 			Button:
-				id: _list_btn
 				text: '[b]List[/b]'
 				markup: True
 				on_release: root.list_transactions()
