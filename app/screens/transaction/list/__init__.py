@@ -38,7 +38,7 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 			except ConnectionError_ as err:
 				InfoPopup(title='Error', message=str(err)).open()
 			else:
-				self.list_transactions()
+				self.list.remove_widget(widget)
 		confirm(title='Delete Transaction',
 				question=f"Are you sure?",
 				confirmed=delete)
