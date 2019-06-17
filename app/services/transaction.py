@@ -11,7 +11,7 @@ class TransactionService(ApiService):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
-	def create(self, category, transaction):
+	def create(self, transaction):
 		pass
 
 	def get_all(self, category):
@@ -28,11 +28,16 @@ class TransactionService(ApiService):
 	def get(self, category, transaction_id):
 		pass
 
-	def update(self, category, transaction):
+	def update(self, transaction):
 		pass
 
-	def delete(self, cateogry, transaction):
-		pass
+	def delete(self, transaction):
+		path = self._get_path(cat_id=transaction.category.id,
+							  trans_id=transaction.id)
+		payload, error = super().delete(path=path)
+		if payload is None:
+			raise ConnectionError_(error)
+		return Transaction.from_json(json=payload['transaction'])
 
 	def _get_path(self, cat_id, trans_id=None):
 		path = constants.API_TRANACTIONS.format(cat_id=cat_id)
