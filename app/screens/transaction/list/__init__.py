@@ -6,6 +6,7 @@ from kivy.uix.screenmanager import Screen
 from screens.category.mixins import FetchCategoriesMixin
 from services.transaction import TransactionService
 from services.exceptions import ConnectionError_
+from uix.popups.confirm.helpers import confirm
 from uix.popups.info import InfoPopup
 from uix.widgets.transaction_box import TransactionBox
 
@@ -31,7 +32,16 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 			self.filter.init(categories=self.categories)
 
 	def delete_transaction(self, widget, transaction):
-		pass
+		def delete():
+			try:
+				self.service.delete(transaction=transaction)
+			except ConnectionError_ as err:
+				InfoPopup(title='Error', message=str(err)).open()
+			else:
+				self.list_transactions()
+		confirm(title='Delete Transaction',
+				question=f"Are you sure?",
+				confirmed=delete)
 
 	def update_transaction(self, transaction):
 		pass
