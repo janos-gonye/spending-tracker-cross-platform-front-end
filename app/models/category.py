@@ -1,5 +1,4 @@
-from datetime import datetime
-from datetime import timezone
+from utils.date import timestamp2datetime
 
 
 class Category:
@@ -13,12 +12,14 @@ class Category:
 		self.description = description or ""
 		if parent is None:
 			self.parent = None
-		elif type(parent) is Category:
+		elif isinstance(parent, Category):
 			self.parent = parent
 		else:
 			self.parent = Category.from_json(parent)
-		self.created_at = created_at
-		self.updated_at = updated_at
+		if created_at:
+			self.created_at = timestamp2datetime(timestamp=created_at)
+		if updated_at:
+			self.updated_at = timestamp2datetime(timestamp=updated_at)
 		self.history = self._history()
 
 	def as_json(self):
