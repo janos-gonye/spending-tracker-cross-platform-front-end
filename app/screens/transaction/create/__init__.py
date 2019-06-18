@@ -19,6 +19,10 @@ class TransactionCreateScreen(FetchCategoriesMixin, Screen):
             InfoPopup(title='Error', message=str(self.cat_conn_error)).open()
         else:
             self.category_selector.init(elements=self.categories)
+            try:
+                self.category_selector.selected = self.categories[0]
+            except IndexError:
+                pass
 
     def submit(self):
         pass
