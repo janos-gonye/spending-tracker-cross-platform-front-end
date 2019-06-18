@@ -25,9 +25,14 @@ class TransactionCreateScreen(FetchCategoriesMixin, Screen):
                 pass
 
     def submit(self):
-        pass
+        self.check_fields()
+
+    def check_fields(self):
+        if self.number_input.text == "" or self.comment_input.text == "" or\
+           self.category_selector.selected is None:
+            InfoPopup(title='Error', message="All fields required.").open()
 
     def on_leave(self):
-        self.number_input = ""
-        self.comment_input = ""
+        self.number_input.text = ""
+        self.comment_input.text = ""
         self.date_picker.reset_today()
