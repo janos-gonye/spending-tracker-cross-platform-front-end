@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
+from models.transaction import Transaction
 from screens.category.mixins import FetchCategoriesMixin
 from uix.popups.info import InfoPopup
 
@@ -21,3 +22,8 @@ class TransactionCreateScreen(FetchCategoriesMixin, Screen):
 
     def submit(self):
         pass
+
+    def on_leave(self):
+        self.number_input = ""
+        self.comment_input = ""
+        self.date_picker.reset_today()
