@@ -12,7 +12,12 @@ class TransactionService(ApiService):
 		super().__init__(*args, **kwargs)
 
 	def create(self, transaction):
-		pass
+		path = self._get_path(cat_id=transaction.category.id)
+		payload, error = super().post(path=path,
+									  json=transaction.as_json())
+		if payload is None:
+			raise ConnectionError_(error)
+		return Transaction.from_json(json=payload['transaction'])
 
 	def get_all(self, category):
 		cat_id = '*' if category is None else category.id
