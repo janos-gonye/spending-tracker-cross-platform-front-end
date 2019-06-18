@@ -2,6 +2,7 @@
 #: import AppActionBar uix.actionbars.app.AppActionBar
 #: import DatePicker uix.widgets.date_picker.DatePicker
 #: import SelectButton uix.widgets.select_button.SelectButton
+#: import NumericInput uix.widgets.numeric_input.NumericInput
 
 
 <TransactionCreateScreen>:
@@ -19,10 +20,11 @@
             Label:
                 text: '[b]Create New Transaction[/b]'
                 markup: True
-            TextInput:
+            NumericInput:
                 id: _number_input
                 multiline: False
                 hint_text: "Amount"
+                input_type: 'numeric'
             TextInput:
                 id: _comment_input
                 multiline: False
@@ -34,8 +36,7 @@
                 id: _category_selector
                 text: "None Selected"
                 attr_name: 'history'
-                allow_null: True
-                null_text: "None Selected"
+                allow_null: False
             Label:
                 text: '[b]Set Process Time[/b]'
                 markup: True
