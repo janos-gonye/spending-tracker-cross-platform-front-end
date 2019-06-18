@@ -9,7 +9,7 @@
     number_input: _number_input
     comment_input: _comment_input
     category_selector: _category_selector
-    process_selector: _process_selector
+    date_picker: _date_picker
     BoxLayout:
         orientation: 'vertical'
         AppActionBar:
@@ -24,7 +24,7 @@
                 id: _number_input
                 multiline: False
                 hint_text: "Amount"
-                input_type: 'numeric'
+                input_type: 'number'
             TextInput:
                 id: _comment_input
                 multiline: False
@@ -41,7 +41,7 @@
                 text: '[b]Set Process Time[/b]'
                 markup: True
             DatePicker:
-			    id: _process_selector
+			    id: _date_picker
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: .2
