@@ -1,0 +1,56 @@
+#:kivy 1.10.1
+#: import AppActionBar uix.actionbars.app.AppActionBar
+#: import DatePicker uix.widgets.date_picker.DatePicker
+#: import SelectButton uix.widgets.select_button.SelectButton
+
+
+<TransactionCreateScreen>:
+    number_input: _number_input
+    comment_input: _comment_input
+    category_selector: _category_selector
+    process_selector: _process_selector
+    BoxLayout:
+        orientation: 'vertical'
+        AppActionBar:
+            screen_manager: root.manager
+        BoxLayout:
+            size_hint_y: .5
+            orientation: 'vertical'
+            Label:
+                text: '[b]Create New Transaction[/b]'
+                markup: True
+            TextInput:
+                id: _number_input
+                multiline: False
+                hint_text: "Amount"
+            TextInput:
+                id: _comment_input
+                multiline: False
+                hint_text: "Comment"
+            Label:
+                text: '[b]Select Category[/b]'
+                markup: True
+            SelectButton:
+                id: _category_selector
+                text: "None Selected"
+                attr_name: 'history'
+                allow_null: True
+                null_text: "None Selected"
+            Label:
+                text: '[b]Set Process Time[/b]'
+                markup: True
+            DatePicker:
+			    id: _process_selector
+        BoxLayout:
+            size_hint_y: .3
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: .2
+            Button:
+                text: '[b]Create[/b]'
+                markup: True
+                on_release: root.submit()
+            Button:
+                text: '[b]Cancel[/b]'
+                markup: True
+                on_release: root.manager.current = 'transaction_list'
