@@ -30,6 +30,11 @@ class DatePicker(BoxLayout):
 		self._set_values()
 		self._bind_callbacks()
 
+	def reset_today(self):
+		self.year = self.dt.year
+		self.month = self.dt.month
+		self.day = self.dt.day
+
 	def _create_lists(self):
 		dt = datetime.now()
 		self.year_select.init(elements=range(2016, dt.year + 1))
