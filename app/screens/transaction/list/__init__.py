@@ -4,8 +4,9 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from screens.category.mixins import FetchCategoriesMixin
-from services.transaction import TransactionService
+from screens.mixins import AdaptiveCancelForTransactionCreateScreenMixin
 from services.exceptions import ConnectionError_
+from services.transaction import TransactionService
 from uix.popups.confirm.helpers import confirm
 from uix.popups.info import InfoPopup
 from uix.widgets.transaction_box import TransactionBox
@@ -14,7 +15,8 @@ from uix.widgets.transaction_box import TransactionBox
 Builder.load_file('screens/transaction/list/transaction_list.kv')
 
 
-class TransactionListScreen(FetchCategoriesMixin, Screen):
+class TransactionListScreen(AdaptiveCancelForTransactionCreateScreenMixin,
+							FetchCategoriesMixin, Screen):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
