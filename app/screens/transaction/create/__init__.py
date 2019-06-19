@@ -12,6 +12,7 @@ Builder.load_file('screens/transaction/create/transaction_create.kv')
 
 
 class TransactionCreateScreen(FetchCategoriesMixin, Screen):
+    back_to_screen = 'transaction_list'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -47,7 +48,7 @@ class TransactionCreateScreen(FetchCategoriesMixin, Screen):
         InfoPopup(title="Success",
                   message="Transaction Successfully Created").open()
         self.reset_fields()
-        self.manager.current = 'main'
+        self.manager.current = 'transaction_list'
         return created
 
     def check_fields(self):
