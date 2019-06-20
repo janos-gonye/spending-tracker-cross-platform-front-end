@@ -23,7 +23,7 @@
 			Button:
 				text: '[b][u]Add New Transaction[/u][/b]'
 				markup: True
-				on_release: root.switch_to_transaction_create_screen()
+				on_release: root.manager.current = 'transaction_create'
 			Button:
 				text: '[b][i]See Statistics[/i][/b]'
 				markup: True

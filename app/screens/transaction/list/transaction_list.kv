@@ -32,7 +32,7 @@
 			Button:
 				text: '[b]New Transaction[/b]'
 				markup: True
-				on_release: root.switch_to_transaction_create_screen()
+				on_release: root.manager.current = 'transaction_create'
 			Button:
 				text: '[b]Back to Main Menu[/b]'
 				markup: True
