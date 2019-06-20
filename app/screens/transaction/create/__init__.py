@@ -47,7 +47,7 @@ class TransactionCreateScreen(FetchCategoriesMixin, Screen):
         InfoPopup(title="Success",
                   message="Transaction Successfully Created").open()
         self.reset_fields()
-        self.manager.current = 'main'
+        self.manager.switch_back()
         return created
 
     def check_fields(self):
