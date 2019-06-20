@@ -2,7 +2,6 @@ import kivy
 kivy.require('1.10.1')
 
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager
 from kivy.uix.screenmanager import SwapTransition
 
 from screens.category.create import CategoryCreateScreen
@@ -13,12 +12,13 @@ from screens.main import MainScreen
 from screens.registration import RegistrationScreen
 from screens.transaction.list import TransactionListScreen
 from screens.transaction.create import TransactionCreateScreen
+from uix.widgets.adaptive_screen_manager import AdaptiveScreenManager
 
 
 class SpendingTrackerApp(App):
 
 	def build(self):
-		screen_manager = ScreenManager(transition=SwapTransition())
+		screen_manager = AdaptiveScreenManager(transition=SwapTransition())
 		screen_manager.add_widget(LoginScreen(name='login'))
 		screen_manager.add_widget(RegistrationScreen(name='registration'))
 		screen_manager.add_widget(MainScreen(name='main'))
