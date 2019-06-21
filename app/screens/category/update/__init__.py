@@ -20,6 +20,9 @@ class CategoryUpdateScreen(CategoryScreen):
             self.select.selected = self.category.parent
 
     def submit(self):
+        if self.title_input.text == '':
+            InfoPopup(title='Error', message="Title required.").open()
+            return
         category = Category(
             id=self.category.id,
             title=self.title_input.text,

@@ -18,6 +18,9 @@ class CategoryCreateScreen(CategoryScreen):
         self.select.init(elements=self.categories)
 
     def submit(self):
+        if self.title_input.text == '':
+            InfoPopup(title='Error', message="Title required.").open()
+            return
         category = Category(
             id=None,
             title=self.title_input.text,
