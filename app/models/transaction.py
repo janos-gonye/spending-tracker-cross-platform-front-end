@@ -11,7 +11,7 @@ class Transaction:
 		Category can be both 'Category' instance or JSON object.
 		"""
 		self.id = id
-		self.amount = amount
+		self.amount = int(amount)
 		self.comment = comment
 		if isinstance(category, Category):
 			self.category = category
