@@ -44,7 +44,8 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 				confirmed=delete)
 
 	def update_transaction(self, transaction):
-		pass
+		self.manager.get_screen('transaction_update').transaction = transaction
+		self.manager.current = 'transaction_update'
 
 	def list_transactions(self):
 		cat = self.filter.selected_category
