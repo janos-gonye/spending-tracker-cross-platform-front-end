@@ -8,6 +8,7 @@ from kivy.properties import NumericProperty
 from kivy.uix.boxlayout import BoxLayout
 
 from utils.date import datetime2timestamp
+from utils.date import timestamp2datetime
 
 
 Builder.load_file('uix/widgets/date_picker/date_picker.kv')
@@ -76,6 +77,11 @@ class DatePicker(BoxLayout):
 		self.day_select.init(elements=range(1, days+1))
 		if self.day > days:
 			self.day = days
+
+	def set(self, year=None, month=None, day=None):
+		if year: self._set_year(year)
+		if month: self._set_month(MONTHS[month-1])
+		if day: self._set_day(day)
 
 	@property
 	def timestamp(self):
