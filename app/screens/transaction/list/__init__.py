@@ -23,6 +23,7 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 
 	def on_pre_enter(self):
 		self.fetch_categories()
+		self.list.clear_widgets()
 
 	def on_enter(self):
 		if self.cat_conn_error:
