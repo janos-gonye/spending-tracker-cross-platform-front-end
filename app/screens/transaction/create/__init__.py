@@ -9,7 +9,7 @@ class TransactionCreateScreen(TransactionSaveScreen):
     submit_btn_text = '[b]Create[/b]'
 
     def submit(self):
-        if self.check_fields() == False:
+        if self.check_fields() is False:
             return
         transaction = Transaction(
             id=None,
