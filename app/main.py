@@ -14,6 +14,7 @@ from screens.transaction.create import TransactionCreateScreen
 from screens.transaction.list import TransactionListScreen
 from screens.transaction.update import TransactionUpdateScreen
 from uix.widgets.adaptive_screen_manager import AdaptiveScreenManager
+from screens.transaction.create import TransactionCreateScreen
 
 
 class SpendingTrackerApp(App):
