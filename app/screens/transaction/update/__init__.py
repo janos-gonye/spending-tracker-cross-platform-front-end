@@ -19,7 +19,7 @@ class TransactionUpdateScreen(TransactionSaveScreen):
                              day=self.transaction.processed_at.day)
 
     def submit(self):
-        if self.check_fields() == False:
+        if self.check_fields() is False:
             return
         transaction = Transaction(
             id=self.transaction.id,
