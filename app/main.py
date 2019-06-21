@@ -10,8 +10,9 @@ from screens.category.update import CategoryUpdateScreen
 from screens.login import LoginScreen
 from screens.main import MainScreen
 from screens.registration import RegistrationScreen
-from screens.transaction.list import TransactionListScreen
 from screens.transaction.create import TransactionCreateScreen
+from screens.transaction.list import TransactionListScreen
+from screens.transaction.update import TransactionUpdateScreen
 from uix.widgets.adaptive_screen_manager import AdaptiveScreenManager
 
 
@@ -27,6 +28,7 @@ class SpendingTrackerApp(App):
 		screen_manager.add_widget(CategoryUpdateScreen(name='category_update'))
 		screen_manager.add_widget(TransactionListScreen(name='transaction_list'))
 		screen_manager.add_widget(TransactionCreateScreen(name='transaction_create'))
+		screen_manager.add_widget(TransactionUpdateScreen(name='transaction_update'))
 		return screen_manager
 
 
