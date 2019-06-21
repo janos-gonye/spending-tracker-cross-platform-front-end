@@ -34,7 +34,13 @@ class TransactionService(ApiService):
 		pass
 
 	def update(self, transaction):
-		pass
+		path = self._get_path(cat_id=transaction.category.id,
+							  trans_id=transaction.id)
+		payload, error = super().patch(path=path,
+									   json=transaction.as_json())
+		if payload is None:
+			raise ConnectionError_(error)
+		return Transaction.from_json(json=payload['transaction'])
 
 	def delete(self, transaction):
 		path = self._get_path(cat_id=transaction.category.id,
