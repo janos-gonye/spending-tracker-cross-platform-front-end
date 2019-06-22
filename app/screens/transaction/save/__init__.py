@@ -23,8 +23,6 @@ class TransactionSaveScreen(FetchCategoriesMixin, Screen):
 
     def on_pre_enter(self):
         self.fetch_categories()
-
-    def on_enter(self):
         if self.cat_conn_error:
             InfoPopup(title='Error', message=str(self.cat_conn_error)).open()
         else:
