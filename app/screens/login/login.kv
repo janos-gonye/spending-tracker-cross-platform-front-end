@@ -31,10 +31,15 @@
 				halign: 'center'
 				markup: True
 		BoxLayout:
-			size_hint_y: .15
+			size_hint_y: .05
 		BoxLayout:
-			size_hint_y: .1
+			size_hint_y: .2
+			orientation: 'vertical'
 			Button:
 				text: '[b][u]Create Account[/u][/b]'
 				markup: True
 				on_release: root.manager.current = 'registration'
+			Button:
+				text: '[b]Settings[/b]'
+				markup: True
+				on_release: root.manager.current = 'settings'
