@@ -19,10 +19,11 @@ class TransactionService(ApiService):
 			raise ConnectionError_(error)
 		return Transaction.from_json(json=payload['transaction'])
 
-	def get_all(self, category):
+	def get_all(self, category, from_, to):
 		cat_id = '*' if category is None else category.id
 		path = self._get_path(cat_id=cat_id)
-		payload, error = super().get(path=path)
+		params = {"from": from_, "to": to}
+		payload, error = super().get(path=path, params=params)
 		if payload is None:
 			raise ConnectionError_(error)
 		result = []

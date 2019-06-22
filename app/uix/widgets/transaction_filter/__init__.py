@@ -14,8 +14,8 @@ class TransactionFilter(BoxLayout):
 	@property
 	def timerange(self):
 		return (
-			self.from_selector.timestamp,
-			self.to_selector.timestamp + 24 * 3600 - 1,  # +1 day - 1 second
+			int(self.from_selector.timestamp),
+			int(self.to_selector.timestamp + 24 * 3600 - 1),  # +1 day - 1 second
 		)
 
 	@property
