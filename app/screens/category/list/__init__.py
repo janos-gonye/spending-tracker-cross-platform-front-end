@@ -21,8 +21,8 @@ class CategoryListScreen(CategoryScreen):
 		super().__init__(*args, **kwargs)
 		self.init_scroll_list()
 
-	def on_enter(self):
-		super().on_enter()
+	def on_pre_enter(self):
+		super().on_pre_enter()
 		if not self.cat_conn_error:
 			self.list_categories()
 

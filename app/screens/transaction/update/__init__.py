@@ -10,8 +10,8 @@ class TransactionUpdateScreen(TransactionSaveScreen):
     select_disabled = True
     transaction = None
 
-    def on_enter(self):
-        super().on_enter()
+    def on_pre_enter(self):
+        super().on_pre_enter()
         self.amount_input.text = str(self.transaction.amount)
         self.comment_input.text = self.transaction.comment
         self.category_selector.selected = self.transaction.category
