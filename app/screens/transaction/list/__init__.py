@@ -49,8 +49,14 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 		self.manager.current = 'transaction_update'
 
 	def list_transactions(self):
-		cat = self.filter.selected_category
-		transactions = self.fetch_transactions(category=cat)
+		category = self.filter.selected_category
+		from_, to = self.filter.timerange
+		try:		
+			transactions = self.service.get_all(
+				category=category, from_=from_, to=to)
+		except ConnectionError_ as err:
+			InfoPopup(title='Error', message=str(err)).open()
+			return
 		transactions.sort(key=lambda t: t.processed_at)
 		self.list.clear_widgets()
 		for trans in transactions:
@@ -61,12 +67,6 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 			trans_box.update_btn.on_release = partial(self.update_transaction,
 													  transaction=trans)
 			self.list.add_widget(trans_box)
-
-	def fetch_transactions(self, category):
-		try:
-			return self.service.get_all(category=category)
-		except ConnectionError_ as err:
-			InfoPopup(title='Error', message=str(err)).open()
 
 	def init_scroll_list(self):
 		# Necessary to scroll
