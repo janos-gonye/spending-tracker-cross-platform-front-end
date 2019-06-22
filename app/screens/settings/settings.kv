@@ -1,6 +1,6 @@
 #:kivy 1.10.1
 #: import SelectButton uix.widgets.select_button.SelectButton
-
+#: import NumericInput uix.widgets.numeric_input.NumericInput
 
 <SettingsScreen>:
 	protocol_select: _protocol_select
@@ -21,16 +21,14 @@
 				id: _host_input
 				hint_text: 'Host'
 				multiline: False
-				password: True
-			TextInput:
+			NumericInput:
 				id: _port_input
 				hint_text: 'Port'
 				multiline: False
-				password: True
 		BoxLayout:
 			size_hint_y: .15
 			Label:
-				text: "[i]Configure application which server to connect to[/i]"
+				text: root.hint_text
 				halign: 'center'
 				markup: True
 		BoxLayout:
