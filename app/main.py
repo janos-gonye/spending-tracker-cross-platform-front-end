@@ -8,13 +8,14 @@ from screens.category.create import CategoryCreateScreen
 from screens.category.list import CategoryListScreen
 from screens.category.update import CategoryUpdateScreen
 from screens.login import LoginScreen
+from screens.settings import SettingsScreen
 from screens.main import MainScreen
 from screens.registration import RegistrationScreen
 from screens.transaction.create import TransactionCreateScreen
 from screens.transaction.list import TransactionListScreen
 from screens.transaction.update import TransactionUpdateScreen
-from uix.widgets.adaptive_screen_manager import AdaptiveScreenManager
 from screens.transaction.create import TransactionCreateScreen
+from uix.widgets.adaptive_screen_manager import AdaptiveScreenManager
 
 
 class SpendingTrackerApp(App):
@@ -22,6 +23,7 @@ class SpendingTrackerApp(App):
 	def build(self):
 		screen_manager = AdaptiveScreenManager(transition=SwapTransition())
 		screen_manager.add_widget(LoginScreen(name='login'))
+		screen_manager.add_widget(SettingsScreen(name='settings'))
 		screen_manager.add_widget(RegistrationScreen(name='registration'))
 		screen_manager.add_widget(MainScreen(name='main'))
 		screen_manager.add_widget(CategoryListScreen(name='category_list'))

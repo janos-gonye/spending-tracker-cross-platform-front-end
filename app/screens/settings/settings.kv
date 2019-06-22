@@ -1,0 +1,46 @@
+#:kivy 1.10.1
+#: import SelectButton uix.widgets.select_button.SelectButton
+
+
+<SettingsScreen>:
+	protocol_select: _protocol_select
+	host_input: _host_input
+	port_input: _port_input
+
+	BoxLayout:
+		orientation: 'vertical'
+		BoxLayout:
+			size_hint_y: .25
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint_y: .4
+			SelectButton:
+                id: _protocol_select
+                text: "Select Protocol"
+			TextInput:
+				id: _host_input
+				hint_text: 'Host'
+				multiline: False
+				password: True
+			TextInput:
+				id: _port_input
+				hint_text: 'Port'
+				multiline: False
+				password: True
+		BoxLayout:
+			size_hint_y: .15
+			Label:
+				text: "[i]Configure application which server to connect to[/i]"
+				halign: 'center'
+				markup: True
+		BoxLayout:
+			size_hint_y: .2
+			orientation: 'vertical'
+			Button:
+				text: '[b]Save[/b]'
+				markup: True
+				on_release: root.save()
+			Button:
+				text: '[b]Back[/b]'
+				markup: True
+				on_release: root.manager.current = 'login'
