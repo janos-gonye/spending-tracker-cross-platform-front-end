@@ -3,7 +3,7 @@ from constants import CONFIG_FILENAME
 from kivy.storage.jsonstore import JsonStore
 
 
-# Find out how to fix getter here:
+# Find out how to fix setter here:
 # https://stackoverflow.com/questions/5189699/how-to-make-a-class-property
 class ConfigService:
     _store = JsonStore(filename=CONFIG_FILENAME)
