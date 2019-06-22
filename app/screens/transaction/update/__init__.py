@@ -7,6 +7,7 @@ from uix.popups.info import InfoPopup
 class TransactionUpdateScreen(TransactionSaveScreen):
     screen_title = '[b]Update Category[/b]'
     submit_btn_text = '[b]Update[/b]'
+    select_disabled = True
     transaction = None
 
     def on_enter(self):
@@ -28,7 +29,7 @@ class TransactionUpdateScreen(TransactionSaveScreen):
             category=self.category_selector.selected,
             processed_at=self.date_picker.timestamp)
         try:
-            created = self.service.update(transaction=transaction)
+            updated = self.service.update(transaction=transaction)
         except ConnectionError_ as err:
             InfoPopup(title='Error', message=str(err)).open()
             return None
@@ -36,7 +37,7 @@ class TransactionUpdateScreen(TransactionSaveScreen):
                   message="Transaction Successfully Updated").open()
         self.reset_fields()
         self.manager.current = 'transaction_list'
-        return created
+        return updated
 
     def reset_fields(self):
         self.amount_input.text = ""
