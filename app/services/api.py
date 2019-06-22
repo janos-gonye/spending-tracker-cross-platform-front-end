@@ -3,6 +3,7 @@ from json.decoder import JSONDecodeError
 
 import constants
 
+from services.config import ConfigService
 from services.http import HttpService
 from services.session import SessionService
 from utils import create_url, succ_status
@@ -69,9 +70,9 @@ class ApiService(HttpService):
 	# Private Methods
 	def _get_api_url(self, path):
 		return create_url(
-			protocol=constants.API_PROTOCOL,
-			host=constants.API_HOST,
-			port=constants.API_PORT,
+			protocol=ConfigService.get_protocol(),
+			host=ConfigService.get_host(),
+			port=ConfigService.get_port(),
 			path=path)
 
 	def _handle_request(self, r):
