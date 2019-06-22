@@ -38,42 +38,41 @@ class ApiService(HttpService):
 
 	@_attach_token
 	def get(self, path, params={}, **kwargs):
-		url = self._get_api_url(path=path, params=params)
-		r = super().get(url=url, **kwargs)
+		url = self._get_api_url(path=path)
+		r = super().get(url=url, params=params, **kwargs)
 		return self._handle_request(r)
 
 	@_attach_token
 	def post(self, path, params={}, json=None, **kwargs):
-		url = self._get_api_url(path=path, params=params)
-		r = super().post(url=url, json=json, **kwargs)
+		url = self._get_api_url(path=path)
+		r = super().post(url=url, params=params, json=json, **kwargs)
 		return self._handle_request(r)
 
 	@_attach_token
 	def put(self, path, params={}, json=None, **kwargs):
-		url = self._get_api_url(path=path, params=params)
-		r = super().put(url=url, json=json, **kwargs)
+		url = self._get_api_url(path=path)
+		r = super().put(url=url, params=params, json=json, **kwargs)
 		return self._handle_request(r)
 
 	@_attach_token
 	def patch(self, path, params={}, json=None, **kwargs):
-		url = self._get_api_url(path=path, params=params)
-		r = super().patch(url=url, json=json, **kwargs)
+		url = self._get_api_url(path=path)
+		r = super().patch(url=url, params=params, json=json, **kwargs)
 		return self._handle_request(r)
 
 	@_attach_token
 	def delete(self, path, params={}, **kwargs):
-		url = self._get_api_url(path=path, params=params)
-		r = super().delete(url=url, **kwargs)
+		url = self._get_api_url(path=path)
+		r = super().delete(url=url, params=params, **kwargs)
 		return self._handle_request(r)
 
 	# Private Methods
-	def _get_api_url(self, path, params):
+	def _get_api_url(self, path):
 		return create_url(
 			protocol=constants.API_PROTOCOL,
 			host=constants.API_HOST,
 			port=constants.API_PORT,
-			path=path,
-			params=params)
+			path=path)
 
 	def _handle_request(self, r):
 		error = 'Error Occured When Connecting to Server'
