@@ -1,7 +1,4 @@
 CONFIG_FILENAME = 'config.json'
-API_PROTOCOL = 'http' # !Use Https in Production
-API_HOST = 'localhost'
-API_PORT = 5000
 API_PATH = '/api'
 API_DEFAULT_KEY = 'message'
 
