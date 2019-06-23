@@ -25,12 +25,16 @@
 			Label:
 				id: _comment
 				markup: True
-			Label:
-				id: _date
-				markup: True
-			Label:
-				id: _amount
-				markup: True
+			BoxLayout:
+				orientation: 'horizontal'
+				Label:
+					id: _date
+					size_hint_x: .5
+					markup: True
+				Label:
+					id: _amount
+					size_hint_x: .5
+					markup: True
 	Button:
 		id: _remove_btn
 		size_hint_x: .3

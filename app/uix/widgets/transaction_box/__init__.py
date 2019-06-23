@@ -11,6 +11,6 @@ class TransactionBox(BoxLayout):
 		super().__init__(*args, **kwargs)
 		self.category.text = f"[b]{transaction.category.history}[/b]"
 		self.comment.text = f"[b]{transaction.comment}[/b]"
-		self.amount = f"[b]{transaction.amount}[/b]"
+		self.amount.text = f"[b]{transaction.amount}[/b]"
 		date = transaction.processed_at.strftime("%Y.%m.%d.")
 		self.date.text = f"[b]{date}[/b]"
