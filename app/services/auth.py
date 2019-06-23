@@ -1,5 +1,6 @@
 import constants
 
+from events.dispatcher import EventDispatcher
 from services.api import ApiService
 from services.session import SessionService
 
@@ -9,6 +10,7 @@ class AuthService(ApiService):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
+		self.dispatcher = EventDispatcher()
 
 	def registrate(self, email, password):
 		json = {
@@ -28,6 +30,7 @@ class AuthService(ApiService):
 		json, error = super().post(path=constants.API_AUTH_LOGIN, json=json)
 		if json:
 			SessionService.create(email=email, token=json['token'])
+		self.dispatcher.dispatch('on_login', email)
 		return json, error
 
 	def logout(self):
