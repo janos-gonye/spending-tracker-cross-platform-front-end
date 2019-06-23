@@ -85,4 +85,4 @@ class DatePicker(BoxLayout):
 
 	@property
 	def timestamp(self):
-		return datetime2timestamp(datetime(self.year, self.month, self.day))
+		return int(datetime2timestamp(datetime(self.year, self.month, self.day)))
