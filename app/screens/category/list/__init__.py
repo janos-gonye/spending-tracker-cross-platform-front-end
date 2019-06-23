@@ -4,6 +4,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from screens.category.base import CategoryScreen
+from screens.mixins import ListScreenMixin
 from services.exceptions import ConnectionError_
 from uix.popups.confirm.helpers import confirm
 from uix.popups.info import InfoPopup
@@ -13,7 +14,7 @@ from uix.widgets.category_box import CategoryBox
 Builder.load_file('screens/category/list/category_list.kv')
 
 
-class CategoryListScreen(CategoryScreen):
+class CategoryListScreen(ListScreenMixin, CategoryScreen):
 	"""
 	The user can manage his or her categories and subcategories.
 	"""
@@ -59,7 +60,3 @@ class CategoryListScreen(CategoryScreen):
 			cat_box.update_btn.on_release = partial(self.update_category,
 													category=category)
 			self.list.add_widget(cat_box)
-
-	def init_scroll_list(self):
-		# Necessary to scroll
-		self.list.bind(minimum_height=self.list.setter('height'))
