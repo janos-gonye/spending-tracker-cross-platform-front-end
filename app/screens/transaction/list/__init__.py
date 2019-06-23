@@ -29,6 +29,7 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 					  message=str(self.cat_conn_error)).open()
 		else:
 			self.filter.init(categories=self.categories)
+			self.list_transactions()
 
 	def delete_transaction(self, widget, transaction):
 		def delete():
