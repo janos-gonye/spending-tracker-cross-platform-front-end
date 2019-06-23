@@ -46,7 +46,7 @@ class StatisticsScreen(Screen):
         from_ = self.from_selector.timestamp
         to = self.to_selector.timestamp
         try:
-            message = self.service(from_=from_, to=to)
+            message = self.service.export_statistics(from_=from_, to=to)
         except ConnectionError_ as err:
             InfoPopup(title="Error", message=str(err)).open()
             return
