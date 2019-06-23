@@ -19,10 +19,18 @@ class StatisticsScreen(ListScreenMixin, Screen):
     def list_statistics(self):
         from_ = self.from_selector.timestamp
         to = self.to_selector.timestamp
+        try:
+            statistics = self.service.get_statistics(from_=from_, to=to)
+        except ConnectionError_ as err:
+            InfoPopup(title="Error", message=str(err)).open()
+            return
+        print(statistics)
 
     def export_statistics(self):
+        from_ = self.from_selector.timestamp
+        to = self.to_selector.timestamp
         try:
-            message = self.service.export_statistics()
+            message = self.service(from_=from_, to=to)
         except ConnectionError_ as err:
             InfoPopup(title="Error", message=str(err)).open()
             return
