@@ -1,18 +1,28 @@
 #:kivy 1.10.1
 #:import AppActionBar uix.actionbars.app.AppActionBar
-#:import TransactionFilter uix.widgets.transaction_filter.TransactionFilter
+#:import DatePicker uix.widgets.date_picker.DatePicker
 
 
 <StatisticsScreen>:
-	filter: _filter
+	from_selector: _from_selector
+	to_selector: _to_selector
 	list: _list
 	BoxLayout:
 		orientation: 'vertical'
 		AppActionBar:
 			screen_manager: root.manager
-		TransactionFilter:
-			id: _filter
+		BoxLayout:
 			size_hint_y: .1
+			orientation: 'horizontal'
+			BoxLayout:
+				size_hint_x: .618
+				orientation: 'vertical'
+				DatePicker:
+					id: _from_selector
+				DatePicker:
+					id: _to_selector
+			BoxLayout:
+				size_hint_x: .382
 		BoxLayout:
 			size_hint_y: .6
 			ScrollView:
@@ -30,7 +40,7 @@
 				markup: True
 				on_release: root.list_statistics()
 			Button:
-				text: '[b]Export Statistics in Email[/b]'
+				text: '[b]Send Statistics in Email[/b]'
 				markup: True
 				on_release: root.export_statistics()
 			Button:
