@@ -1,5 +1,7 @@
 from kivy.uix.screenmanager import ScreenManager
 
+from events.handler import EventHandler
+
 
 class AdaptiveScreenManager(ScreenManager):
 	history = []
@@ -9,6 +11,8 @@ class AdaptiveScreenManager(ScreenManager):
 		# Don't consume memory unnecessarily
 		self.history = self.history[-2:]
 		super().on_current(instance, value)
+		EventHandler(event_type='on_session_expire',
+					 callback=self.on_session_expire)
 
 	def switch_back(self):
 		"""
@@ -17,3 +21,6 @@ class AdaptiveScreenManager(ScreenManager):
 		!!!Only works if the user is only able to go back from the screen!!!
 		"""
 		self.current = self.history[-2]
+
+	def on_session_expire(self):
+		self.current = 'login'
