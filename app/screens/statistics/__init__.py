@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
+from screens.mixins import ListScreenMixin
 from services.exceptions import ConnectionError_
 from services.statistics import StatisticsService
 from uix.popups.info import InfoPopup
@@ -9,7 +10,7 @@ from uix.popups.info import InfoPopup
 Builder.load_file('screens/statistics/statistics.kv')
 
 
-class StatisticsScreen(Screen):
+class StatisticsScreen(ListScreenMixin, Screen):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
