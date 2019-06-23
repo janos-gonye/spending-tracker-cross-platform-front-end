@@ -6,7 +6,6 @@ from utils.lang import classproperty
 
 
 class SessionService:
-	_store = JsonStore(filename=CONFIG_FILENAME)
 	_email = None
 	_token = None
 
@@ -41,3 +40,7 @@ class SessionService:
 			return SessionService._store.get("token")["value"]
 		except KeyError:
 			return None
+
+	@classproperty
+	def _store(cls):
+		return JsonStore(filename=CONFIG_FILENAME)
