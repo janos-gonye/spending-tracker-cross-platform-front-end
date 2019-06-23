@@ -2,11 +2,12 @@ from constants import CONFIG_FILENAME
 
 from kivy.storage.jsonstore import JsonStore
 
+from utils.lang import classproperty
+
 
 # Find out how to fix setter here:
 # https://stackoverflow.com/questions/5189699/how-to-make-a-class-property
 class ConfigService:
-    _store = JsonStore(filename=CONFIG_FILENAME)
     _protocol = None
     _host = None
     _port = None
@@ -60,3 +61,7 @@ class ConfigService:
             raise ValueError
         cls._port = value
         cls._store.put("port", value=value)
+
+    @classproperty
+    def _store(cls):
+        return JsonStore(filename=CONFIG_FILENAME)
