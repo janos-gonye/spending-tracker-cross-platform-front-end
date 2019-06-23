@@ -1,0 +1,39 @@
+#:kivy 1.10.1
+#:import AppActionBar uix.actionbars.app.AppActionBar
+#:import TransactionFilter uix.widgets.transaction_filter.TransactionFilter
+
+
+<StatisticsScreen>:
+	filter: _filter
+	list: _list
+	BoxLayout:
+		orientation: 'vertical'
+		AppActionBar:
+			screen_manager: root.manager
+		TransactionFilter:
+			id: _filter
+			size_hint_y: .1
+		BoxLayout:
+			size_hint_y: .6
+			ScrollView:
+				do_scroll_x: False
+				size: self.size
+				StackLayout:
+					id: _list
+					size_hint_y: None
+					spacing: 5
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint_y: .3
+			Button:
+				text: '[b]See Statistics[/b]'
+				markup: True
+				on_release: root.list_statistics()
+			Button:
+				text: '[b]Export Statistics in Email[/b]'
+				markup: True
+				on_release: root.export_statistics()
+			Button:
+				text: '[b]Back to Main Menu[/b]'
+				markup: True
+				on_release: root.manager.current = 'main'
