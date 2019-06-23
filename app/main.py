@@ -15,12 +15,14 @@ from screens.transaction.create import TransactionCreateScreen
 from screens.transaction.list import TransactionListScreen
 from screens.transaction.update import TransactionUpdateScreen
 from screens.transaction.create import TransactionCreateScreen
+from services.auth import AuthService
 from uix.widgets.adaptive_screen_manager import AdaptiveScreenManager
 
 
 class SpendingTrackerApp(App):
 
 	def build(self):
+		self.auth_service = AuthService()
 		screen_manager = AdaptiveScreenManager(transition=SwapTransition())
 		screen_manager.add_widget(LoginScreen(name='login'))
 		screen_manager.add_widget(SettingsScreen(name='settings'))
@@ -32,6 +34,10 @@ class SpendingTrackerApp(App):
 		screen_manager.add_widget(TransactionListScreen(name='transaction_list'))
 		screen_manager.add_widget(TransactionCreateScreen(name='transaction_create'))
 		screen_manager.add_widget(TransactionUpdateScreen(name='transaction_update'))
+		if self.auth_service.verify_stored_session():
+			screen_manager.current = 'main'
+		else:
+			screen_manager.current = 'login'
 		return screen_manager
 
 

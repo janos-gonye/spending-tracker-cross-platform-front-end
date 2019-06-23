@@ -17,9 +17,9 @@ class AppActionBar(ActionBar):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 		self.auth = AuthService()
-		EventHandler(event_type='on_login', callback=self.on_login)
+		EventHandler(event_type='on_session', callback=self.on_session)
 
-	def on_login(self, *args):
+	def on_session(self, *args):
 		self.email_label.text = f"[b]{args[0]}[/b]"
 
 	def logout(self):

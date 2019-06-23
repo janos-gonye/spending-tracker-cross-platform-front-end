@@ -30,9 +30,20 @@ class AuthService(ApiService):
 		json, error = super().post(path=constants.API_AUTH_LOGIN, json=json)
 		if json:
 			SessionService.create(email=email, token=json['token'])
-		self.dispatcher.dispatch('on_login', email)
+			self.dispatcher.dispatch('on_session', email)
 		return json, error
 
 	def logout(self):
 		SessionService.destroy()
 		return True
+
+	def verify_stored_session(self):
+		email = SessionService.email
+		token = SessionService.token
+		if email is None or token is None:
+			return False
+		json, error = super().get(path=constants.API_AUTH_VERIFY_TOKEN)
+		if json:
+			self.dispatcher.dispatch('on_session', email)
+			return True
+		return False
