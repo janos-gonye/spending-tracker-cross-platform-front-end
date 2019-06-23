@@ -10,6 +10,7 @@ from screens.category.update import CategoryUpdateScreen
 from screens.login import LoginScreen
 from screens.settings import SettingsScreen
 from screens.main import MainScreen
+from screens.statistics import StatisticsScreen
 from screens.registration import RegistrationScreen
 from screens.transaction.create import TransactionCreateScreen
 from screens.transaction.list import TransactionListScreen
@@ -28,6 +29,7 @@ class SpendingTrackerApp(App):
 		screen_manager.add_widget(SettingsScreen(name='settings'))
 		screen_manager.add_widget(RegistrationScreen(name='registration'))
 		screen_manager.add_widget(MainScreen(name='main'))
+		screen_manager.add_widget(StatisticsScreen(name='statistics'))
 		screen_manager.add_widget(CategoryListScreen(name='category_list'))
 		screen_manager.add_widget(CategoryCreateScreen(name='category_create'))
 		screen_manager.add_widget(CategoryUpdateScreen(name='category_update'))
