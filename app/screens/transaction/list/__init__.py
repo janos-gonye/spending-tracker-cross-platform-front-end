@@ -4,6 +4,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 
 from screens.category.mixins import FetchCategoriesMixin
+from screens.mixins import ListScreenMixin
 from services.transaction import TransactionService
 from services.exceptions import ConnectionError_
 from uix.popups.confirm.helpers import confirm
@@ -14,7 +15,7 @@ from uix.widgets.transaction_box import TransactionBox
 Builder.load_file('screens/transaction/list/transaction_list.kv')
 
 
-class TransactionListScreen(FetchCategoriesMixin, Screen):
+class TransactionListScreen(ListScreenMixin, FetchCategoriesMixin, Screen):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
@@ -66,7 +67,3 @@ class TransactionListScreen(FetchCategoriesMixin, Screen):
 			trans_box.update_btn.on_release = partial(self.update_transaction,
 													  transaction=trans)
 			self.list.add_widget(trans_box)
-
-	def init_scroll_list(self):
-		# Necessary to scroll
-		self.list.bind(minimum_height=self.list.setter('height'))
