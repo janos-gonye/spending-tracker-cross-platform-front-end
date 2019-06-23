@@ -17,7 +17,8 @@ class StatisticsScreen(ListScreenMixin, Screen):
         self.service = StatisticsService()
 
     def list_statistics(self):
-        pass
+        from_ = self.from_selector.timestamp
+        to = self.to_selector.timestamp
 
     def export_statistics(self):
         try:
