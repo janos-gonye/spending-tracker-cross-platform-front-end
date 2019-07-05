@@ -51,7 +51,6 @@ class CategoryListScreen(ListScreenMixin, CategoryScreen):
 
 	def list_categories(self):
 		self.list.clear_widgets()
-		self.categories.sort(key=lambda c: c.history)
 		for category in self.categories:
 			cat_box = CategoryBox(category=category)
 			cat_box.remove_btn.on_release = partial(self.delete_category,
