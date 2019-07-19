@@ -5,7 +5,7 @@ from uix.popups.info import InfoPopup
 
 
 class TransactionUpdateScreen(TransactionSaveScreen):
-    screen_title = '[b]Update Category[/b]'
+    screen_title = '[b]Update Transaction[/b]'
     submit_btn_text = '[b]Update[/b]'
     select_disabled = True
     transaction = None
