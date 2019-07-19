@@ -5,7 +5,7 @@ from uix.popups.info import InfoPopup
 
 
 class TransactionCreateScreen(TransactionSaveScreen):
-    screen_title = '[b]Create Category[/b]'
+    screen_title = '[b]Create Transaction[/b]'
     submit_btn_text = '[b]Create[/b]'
     select_disabled = False
 
