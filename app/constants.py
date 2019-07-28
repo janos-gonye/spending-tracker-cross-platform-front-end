@@ -12,8 +12,6 @@ API_STATISTICS = API_PATH + '/statistics'
 API_STATISTICS_EXPORT = API_PATH + '/statistics/export'
 
 # Event types
-EVENTS = {
-    LOGIN = 'on_login',
-    LOGOUT = 'on_logout',
-    SETTINGS_CHANGE = 'on_settings_change',
-}
+EVENT_LOGIN = 'on_login',
+EVENT_LOGOUT = 'on_logout',
+EVENT_SETTINGS_CHANGE = 'on_settings_change',
