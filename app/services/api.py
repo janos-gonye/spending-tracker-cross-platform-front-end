@@ -3,9 +3,9 @@ from json.decoder import JSONDecodeError
 
 import constants
 
-from events.dispatcher import EventDispatcher
 from services.config import ConfigService
 from services.http import HttpService
+from services.mixins import EventEmitterMixin
 from services.session import SessionService
 from utils import create_url, succ_status
 
@@ -26,7 +26,7 @@ def _attach_token(f):
 	return decorated
 
 
-class ApiService(HttpService):
+class ApiService(EventEmitterMixin, HttpService):
 
 	def __init__(self, *args, **kwargs):
 		"""
@@ -37,7 +37,6 @@ class ApiService(HttpService):
 			If not successful json is None
 		"""
 		super().__init__(*args, **kwargs)
-		self.dispatcher = EventDispatcher()
 
 	@_attach_token
 	def get(self, path, params={}, **kwargs):
@@ -87,7 +86,7 @@ class ApiService(HttpService):
 			json = r.json()
 			if json:
 				if json.get('expired') is True:
-					self.dispatcher.dispatch(event_type='on_session_expire')
+					self.__class__._emit_event(event_type='on_session_expire')
 				return None, json[constants.API_DEFAULT_KEY]
 		except JSONDecodeError:
 			return None, error

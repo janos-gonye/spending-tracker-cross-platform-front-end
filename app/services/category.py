@@ -12,7 +12,9 @@ class CategoryService(ApiService):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		for event_type in ('on_settings_change', 'on_session_change'):
+		for event_type in (constants.EVENT_LOGIN,
+						   constants.EVENT_LOGOUT,
+						   constants.EVENT_SETTINGS_CHANGE):
 			EventHandler(event_type=event_type,
 						 callback=self._uncache_categories)
 
