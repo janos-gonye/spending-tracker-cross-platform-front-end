@@ -1,17 +1,17 @@
 from kivy.storage.jsonstore import JsonStore
 
 from constants import CONFIG_FILENAME
-from events.dispatcher import EventDispatcher
+from constants import EVENT_SETTINGS_CHANGE
+from services.mixins import EventEmitterMixin
 from utils.lang import classproperty
 
 
 # TODO: Find out how to fix setter here:
 # https://stackoverflow.com/questions/5189699/how-to-make-a-class-property
-class ConfigService:
+class ConfigService(EventEmitterMixin):
     _protocol = None
     _host = None
     _port = None
-    _dispatcher = EventDispatcher()
 
     @classmethod
     def get_protocol(cls):
@@ -29,7 +29,7 @@ class ConfigService:
             raise ValueError
         cls._protocol = value
         cls._store.put("protocol", value=value)
-        cls._settings_changed()
+        cls._emit_event(event_type=EVENT_SETTINGS_CHANGE)
 
     @classmethod
     def get_host(cls):
@@ -45,7 +45,7 @@ class ConfigService:
         if value == '': raise ValueError
         cls._host = value
         cls._store.put("host", value=value)
-        cls._settings_changed()
+        cls._emit_event(event_type=EVENT_SETTINGS_CHANGE)
 
     @classmethod
     def get_port(cls):
@@ -64,12 +64,8 @@ class ConfigService:
             raise ValueError
         cls._port = value
         cls._store.put("port", value=value)
-        cls._settings_changed()
+        cls._emit_event(event_type=EVENT_SETTINGS_CHANGE)
 
     @classproperty
     def _store(cls):
         return JsonStore(filename=CONFIG_FILENAME)
-
-    @classmethod
-    def _settings_changed(cls):
-        cls._dispatcher.dispatch(event_type='on_settings_change')

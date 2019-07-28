@@ -1,14 +1,15 @@
 from kivy.storage.jsonstore import JsonStore
 
 from constants import CONFIG_FILENAME
-from events.dispatcher import EventDispatcher
+from constants import EVENT_LOGIN
+from constants import EVENT_LOGOUT
+from services.mixins import EventEmitterMixin
 from utils.lang import classproperty
 
 
-class SessionService:
+class SessionService(EventEmitterMixin):
 	_email = None
 	_token = None
-	_dispatcher = EventDispatcher()
 
 	@classmethod
 	def create(cls, email, token):
@@ -16,7 +17,7 @@ class SessionService:
 		cls._token = token
 		cls._store.put("email", value=email)
 		cls._store.put("token", value=token)
-		cls._session_changed()
+		cls._emit_event(event_type=EVENT_LOGIN)
 
 	@classmethod
 	def destroy(cls):
@@ -25,6 +26,7 @@ class SessionService:
 		cls._store.delete("email")
 		cls._store.delete("token")
 		cls._session_changed()
+		cls._emit_event(event_type=EVENT_LOGOUT)
 
 	@classproperty
 	def email(cls):
@@ -47,7 +49,3 @@ class SessionService:
 	@classproperty
 	def _store(cls):
 		return JsonStore(filename=CONFIG_FILENAME)
-
-	@classmethod
-	def _session_changed(cls):
-		cls._dispatcher.dispatch(event_type='on_session_change')
