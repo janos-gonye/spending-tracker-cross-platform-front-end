@@ -55,8 +55,26 @@ First time you run the application, you need to configure which server to connec
 You can do this by navigating to the *Settings*, selecting the *protocol* and setting the *host name* and *port* input fields.
 
 ## Pictures from the application
-> Coming soon...  
-> New style is comming soon...
+> New style is comming soon...  
+
+
+![Login Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/login_screen.png) 
+ 
+![Registration Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/registration_screen.png) 
+ 
+![Settings Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/settings_screen.png) 
+ 
+![Main Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/main_screen.png) 
+ 
+![Category List Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/category_list_screen.png) 
+ 
+![Create Category Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/create_category_screen.png) 
+ 
+![Transaction List Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/transaction_list_screen.png) 
+ 
+![Popup](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/popup.png) 
+ 
+![Statistics Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/statistics_screen.png)
 
 
 <hr>
