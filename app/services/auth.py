@@ -42,6 +42,6 @@ class AuthService(ApiService):
 			return False
 		json, error = super().get(path=constants.API_AUTH_VERIFY_TOKEN)
 		if json:
-			self.__class__._emit_event('on_session', email)
+			self.__class__._emit_event(event_type=constants.EVENT_LOGIN)
 			return True
 		return False

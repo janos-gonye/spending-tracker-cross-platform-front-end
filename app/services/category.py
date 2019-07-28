@@ -65,5 +65,6 @@ class CategoryService(ApiService):
 	def _get_path(self, category):
 		return f"{constants.API_CATEGORIES}/{category.id}"
 
-	def _uncache_categories(self):
+	def _uncache_categories(self, *args):
 		CategoryService.categories = None
+		print('Categories uncached.')

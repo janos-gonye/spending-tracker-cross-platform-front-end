@@ -25,7 +25,6 @@ class SessionService(EventEmitterMixin):
 		cls._token = None
 		cls._store.delete("email")
 		cls._store.delete("token")
-		cls._session_changed()
 		cls._emit_event(event_type=EVENT_LOGOUT)
 
 	@classproperty
