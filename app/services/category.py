@@ -1,5 +1,6 @@
 import constants
 
+from events.handler import EventHandler
 from models.category import Category
 from services.api import ApiService
 from services.exceptions import ConnectionError_
@@ -11,6 +12,8 @@ class CategoryService(ApiService):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
+		EventHandler(event_type='on_settings_change',
+					 callback=self._uncache_categories)
 
 	def create(self, category):
 		payload, error = super().post(path=constants.API_CATEGORIES,
@@ -58,3 +61,6 @@ class CategoryService(ApiService):
 
 	def _get_path(self, category):
 		return f"{constants.API_CATEGORIES}/{category.id}"
+
+	def _uncache_categories(self):
+		CategoryService.categories = None
