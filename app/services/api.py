@@ -86,7 +86,8 @@ class ApiService(EventEmitterMixin, HttpService):
 			json = r.json()
 			if json:
 				if json.get('expired') is True:
-					self.__class__._emit_event(event_type='on_session_expire')
+					self.__class__._emit_event(
+						event_type=constants.EVENT_SESSION_EXPIRE)
 				return None, json[constants.API_DEFAULT_KEY]
 		except JSONDecodeError:
 			return None, error
