@@ -64,3 +64,4 @@ class CategoryService(ApiService):
 
 	def _uncache_categories(self):
 		CategoryService.categories = None
+		print("Categories uncached.")
