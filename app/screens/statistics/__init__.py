@@ -58,11 +58,11 @@ class StatisticsScreen(Screen):
         text = ""
         if sum_ != 0:
             text = "{indent}{key}: {sum_}\n".format(indent=" " * indent,
-                                            key=key, sum_=sum_)
+                                                    key=key, sum_=sum_)
         if include_children is True:
             for child in category[key]['children']:
                 text += " " * indent + self.statistics_for(category=child,
-                                                           indent=indent+4)
+                                                           indent=indent + 4)
         return text
 
     def calc_all_cost(self, statistics):

@@ -1,5 +1,7 @@
 # TODO: Find out why __.set__ never invoked.
 # https://stackoverflow.com/questions/5189699/how-to-make-a-class-property/38810649
+
+
 class ClassPropertyDescriptor(object):
 
     def __init__(self, fget, fset=None):
@@ -22,6 +24,7 @@ class ClassPropertyDescriptor(object):
             func = classmethod(func)
         self.fset = func
         return self
+
 
 def classproperty(func):
     if not isinstance(func, (classmethod, staticmethod)):

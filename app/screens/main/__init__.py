@@ -7,9 +7,10 @@ Builder.load_file('screens/main/main.kv')
 
 
 class MainScreen(Screen):
-	"""
-	This is the screen that the user sees
-	after successfully logging in or already logged in.
-	"""
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
+    """
+    This is the screen that the user sees
+    after successfully logging in or already logged in.
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

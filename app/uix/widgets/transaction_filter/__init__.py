@@ -8,23 +8,23 @@ Builder.load_file('uix/widgets/transaction_filter/transaction_filter.kv')
 
 class TransactionFilter(BoxLayout):
 
-	def init(self, categories):
-		self.category_selector.init(elements=categories)
+    def init(self, categories):
+        self.category_selector.init(elements=categories)
 
-	@property
-	def timerange(self):
-		return (
-			int(self.from_selector.timestamp),
-			int(self.to_selector.timestamp + 24 * 3600 - 1),  # +1 day - 1 second
-		)
+    @property
+    def timerange(self):
+        return (
+            int(self.from_selector.timestamp),
+            int(self.to_selector.timestamp + 24 * 3600 - 1),  # +1 day - 1 second
+        )
 
-	@property
-	def selected_category(self):
-		return self.category_selector.selected
+    @property
+    def selected_category(self):
+        return self.category_selector.selected
 
-	@property
-	def filters(self):
-		return {
-			'category': self.selected_category,
-			'timerange': self.timerange,
-		}
+    @property
+    def filters(self):
+        return {
+            'category': self.selected_category,
+            'timerange': self.timerange,
+        }
