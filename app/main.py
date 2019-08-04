@@ -22,26 +22,32 @@ from uix.widgets.adaptive_screen_manager import AdaptiveScreenManager
 
 class SpendingTrackerApp(App):
 
-	def build(self):
-		self.auth_service = AuthService()
-		screen_manager = AdaptiveScreenManager(transition=SwapTransition())
-		screen_manager.add_widget(LoginScreen(name='login'))
-		screen_manager.add_widget(SettingsScreen(name='settings'))
-		screen_manager.add_widget(RegistrationScreen(name='registration'))
-		screen_manager.add_widget(MainScreen(name='main'))
-		screen_manager.add_widget(StatisticsScreen(name='statistics'))
-		screen_manager.add_widget(CategoryListScreen(name='category_list'))
-		screen_manager.add_widget(CategoryCreateScreen(name='category_create'))
-		screen_manager.add_widget(CategoryUpdateScreen(name='category_update'))
-		screen_manager.add_widget(TransactionListScreen(name='transaction_list'))
-		screen_manager.add_widget(TransactionCreateScreen(name='transaction_create'))
-		screen_manager.add_widget(TransactionUpdateScreen(name='transaction_update'))
-		if self.auth_service.verify_stored_session():
-			screen_manager.current = 'main'
-		else:
-			screen_manager.current = 'login'
-		return screen_manager
+    def build(self):
+        self.auth_service = AuthService()
+        screen_manager = AdaptiveScreenManager(transition=SwapTransition())
+        screen_manager.add_widget(LoginScreen(name='login'))
+        screen_manager.add_widget(SettingsScreen(name='settings'))
+        screen_manager.add_widget(RegistrationScreen(name='registration'))
+        screen_manager.add_widget(MainScreen(name='main'))
+        screen_manager.add_widget(StatisticsScreen(name='statistics'))
+        screen_manager.add_widget(CategoryListScreen(name='category_list'))
+        screen_manager.add_widget(CategoryCreateScreen(name='category_create'))
+        screen_manager.add_widget(CategoryUpdateScreen(name='category_update'))
+        screen_manager.add_widget(
+            TransactionListScreen(
+                name='transaction_list'))
+        screen_manager.add_widget(
+            TransactionCreateScreen(
+                name='transaction_create'))
+        screen_manager.add_widget(
+            TransactionUpdateScreen(
+                name='transaction_update'))
+        if self.auth_service.verify_stored_session():
+            screen_manager.current = 'main'
+        else:
+            screen_manager.current = 'login'
+        return screen_manager
 
 
 if __name__ == '__main__':
-	SpendingTrackerApp().run()
+    SpendingTrackerApp().run()

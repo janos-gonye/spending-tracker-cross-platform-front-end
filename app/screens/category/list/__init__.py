@@ -15,47 +15,48 @@ Builder.load_file('screens/category/list/category_list.kv')
 
 
 class CategoryListScreen(ListScreenMixin, CategoryScreen):
-	"""
-	The user can manage his or her categories and subcategories.
-	"""
-	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
-		self.init_scroll_list()
+    """
+    The user can manage his or her categories and subcategories.
+    """
 
-	def on_pre_enter(self):
-		super().on_pre_enter()
-		if not self.cat_conn_error:
-			self.list_categories()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.init_scroll_list()
 
-	def on_leave(self):
-		self.list.clear_widgets()
+    def on_pre_enter(self):
+        super().on_pre_enter()
+        if not self.cat_conn_error:
+            self.list_categories()
 
-	def delete_category(self, widget, category):
-		def delete():
-			try:
-				self.service.delete(category=category)
-			except ConnectionError_ as err:
-				InfoPopup(title='Error',
-						  message=str(err)).open()
-			else:
-				self.fetch_categories()
-				self.show_if_error()
-				self.list_categories()
-		confirm(title="Delete Category",
-				question=f"Are you sure?\n({category.history})",
-				confirmed=delete)
+    def on_leave(self):
+        self.list.clear_widgets()
 
-	def update_category(self, category):
-		self.manager.get_screen('category_update').category = category
-		self.manager.current = 'category_update'
+    def delete_category(self, widget, category):
+        def delete():
+            try:
+                self.service.delete(category=category)
+            except ConnectionError_ as err:
+                InfoPopup(title='Error',
+                          message=str(err)).open()
+            else:
+                self.fetch_categories()
+                self.show_if_error()
+                self.list_categories()
+        confirm(title="Delete Category",
+                question=f"Are you sure?\n({category.history})",
+                confirmed=delete)
 
-	def list_categories(self):
-		self.list.clear_widgets()
-		for category in self.categories:
-			cat_box = CategoryBox(category=category)
-			cat_box.remove_btn.on_release = partial(self.delete_category,
-													widget=cat_box,
-													category=category)
-			cat_box.update_btn.on_release = partial(self.update_category,
-													category=category)
-			self.list.add_widget(cat_box)
+    def update_category(self, category):
+        self.manager.get_screen('category_update').category = category
+        self.manager.current = 'category_update'
+
+    def list_categories(self):
+        self.list.clear_widgets()
+        for category in self.categories:
+            cat_box = CategoryBox(category=category)
+            cat_box.remove_btn.on_release = partial(self.delete_category,
+                                                    widget=cat_box,
+                                                    category=category)
+            cat_box.update_btn.on_release = partial(self.update_category,
+                                                    category=category)
+            self.list.add_widget(cat_box)

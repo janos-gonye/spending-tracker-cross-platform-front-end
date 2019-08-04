@@ -34,7 +34,8 @@ class SettingsScreen(Screen):
             InfoPopup(title="Error", message="All fields required.").open()
             return False
         try:
-            if not (0 < int(port) <= 65535): raise ValueError
+            if not (0 < int(port) <= 65535):
+                raise ValueError
         except ValueError:
             error = "Port must be a number between 0 and 65535."
             InfoPopup(title="Error", message=error).open()

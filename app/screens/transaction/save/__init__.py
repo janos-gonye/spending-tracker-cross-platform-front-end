@@ -39,6 +39,8 @@ class TransactionSaveScreen(FetchCategoriesMixin, Screen):
     def check_fields(self):
         if self.amount_input.text == "" or\
            self.category_selector.selected is None:
-            InfoPopup(title='Error', message="Amount and category is required.").open()
+            InfoPopup(
+                title='Error',
+                message="Amount and category is required.").open()
             return False
         return True

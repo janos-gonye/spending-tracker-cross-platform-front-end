@@ -7,7 +7,7 @@ from uix.popups.info import InfoPopup
 
 class CategoryScreen(FetchCategoriesMixin, Screen):
 
-    def __init__(self,  *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.service = CategoryService()
 

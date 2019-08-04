@@ -42,7 +42,8 @@ class ConfigService(EventEmitterMixin):
 
     @classmethod
     def set_host(cls, value):
-        if value == '': raise ValueError
+        if value == '':
+            raise ValueError
         cls._host = value
         cls._store.put("host", value=value)
         cls._emit_event(event_type=EVENT_SETTINGS_CHANGE)
