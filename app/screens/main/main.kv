@@ -8,10 +8,10 @@
 		AppActionBar:
 			screen_manager: root.manager
 		BoxLayout:
-			size_hint_y: .6
+			size_hint_y: .5
 		BoxLayout:
 			orientation: 'vertical'
-			size_hint_y: .4
+			size_hint_y: .5
 			Button:
 				text: '[b]Manage Categories[/b]'
 				markup: True
@@ -24,6 +24,10 @@
 				text: '[b][u]Add New Transaction[/u][/b]'
 				markup: True
 				on_release: root.manager.current = 'transaction_create'
+			Button:
+				text: '[b]Your Account[/b]'
+				markup: True
+				on_release: root.manager.current = 'account'
 			Button:
 				text: '[b][i]See Statistics[/i][/b]'
 				markup: True
