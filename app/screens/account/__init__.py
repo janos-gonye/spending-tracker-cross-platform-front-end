@@ -14,7 +14,7 @@ class AccountScreen(Screen):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.auth_service = AuthService()
+        self.auth = AuthService()
 
     def delete_account(self):
         confirm(
@@ -25,8 +25,10 @@ class AccountScreen(Screen):
 
     def _delete_account(self):
         try:
-            self.auth_service.delete_registration()
+            self.auth.delete_registration()
         except ConnectionError_ as err:
             InfoPopup(title='Error', message=str(err)).open()
         InfoPopup(title='Delete Account',
                   message='Confirmation Email Sent.').open()
+        self.manager.current = 'login'
+        self.auth.logout()
