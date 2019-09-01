@@ -1,0 +1,25 @@
+#:kivy 1.10.1
+#:import AppActionBar uix.actionbars.app.AppActionBar
+
+
+<AccountScreen>:
+	from_selector: _from_selector
+	to_selector: _to_selector
+	statistics_lbl: _statistics_lbl
+	BoxLayout:
+		orientation: 'vertical'
+		AppActionBar:
+			screen_manager: root.manager
+		BoxLayout:
+			size_hint_y: .8
+		BoxLayout:
+			orientation: 'vertical'
+			size_hint_y: .2
+			Button:
+				text: '[b][color=ff0000]Delet Account[/color][/b]'
+				markup: True
+				on_release: root.export_statistics()
+			Button:
+				text: '[b]Back to Main Menu[/b]'
+				markup: True
+				on_release: root.manager.current = 'main'
