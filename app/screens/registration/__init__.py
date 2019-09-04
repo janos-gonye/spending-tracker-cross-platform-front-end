@@ -20,11 +20,12 @@ class RegistrationScreen(Screen):
         super().__init__(*args, **kwargs)
         self.auth = AuthService()
 
-    def registrate(self, email, password, confirm_password):
-        if '' in (email, password, confirm_password):
+    def registrate(self, email, password):
+        valid, error = self.password_input.check()
+        if '' in (email, password):
             json, error = None, 'All fields required.'
-        elif password != confirm_password:
-            json, error = None, "Passwords don't match!"
+        elif not valid:
+            json, error = None, error
         else:
             json, error = self.auth.registrate(email, password)
         if json:
@@ -37,8 +38,7 @@ class RegistrationScreen(Screen):
 
     def reset(self):
         self.email_input.text = ''
-        self.password_input.text = ''
-        self.confirm_password_input.text = ''
+        self.password_input.reset()
 
     def on_leave(self, *args, **kwargs):
         self.reset()
