@@ -1,10 +1,10 @@
 #:kivy 1.10.1
+#: import PasswordInput uix.widgets.password_input.PasswordInput
 
 
 <RegistrationScreen>:
 	email_input: _email_input
 	password_input: _password_input
-	confirm_password_input: _confirm_password_input
 
 	BoxLayout:
 		orientation: 'vertical'
@@ -15,23 +15,18 @@
 			size_hint_y: .4
 			TextInput:
 				id: _email_input
+				size_hint_y: .25
 				hint_text: 'Email Address'
 				multiline: False
 				focus: True
-			TextInput:
+			PasswordInput:
 				id: _password_input
-				hint_text: 'Password'
-				multiline: False
-				password: True
-			TextInput:
-				id: _confirm_password_input
-				hint_text: 'Confirm Password'
-				multiline: False
-				password: True
+				size_hint_y: .5
 			Button:
+				size_hint_y: .25
 				text: '[b][u]Registrate[/u][/b]'
 				markup: True
-				on_release: root.registrate(_email_input.text, _password_input.text, _confirm_password_input.text)
+				on_release: root.registrate(_email_input.text, _password_input.password)
 		BoxLayout:
 			size_hint_y: .15
 			Label:
