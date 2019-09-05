@@ -10,6 +10,7 @@ API_CATEGORIES = API_PATH + '/categories'
 API_TRANACTIONS = API_PATH + '/categories/{cat_id}/transactions'
 API_STATISTICS = API_PATH + '/statistics'
 API_STATISTICS_EXPORT = API_PATH + '/statistics/export'
+API_CHANGE_PASSWORD = API_PATH + '/change-password'
 
 # Event types
 EVENT_LOGIN = 'on_login'
