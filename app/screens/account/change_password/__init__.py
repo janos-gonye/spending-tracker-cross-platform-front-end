@@ -20,10 +20,10 @@ class ChangePasswordScreen(Screen):
             InfoPopup(title='Field Error',
                       message=error).open()
             return
-        try:
-            self.auth.change_password(new_password)
-        except ConnectionError_ as err:
-            InfoPopup(title='Error', message=str(err)).open()
+        json, error = self.auth.change_password(new_password)
+        if not json:
+            InfoPopup(title='Error', message=str(error)).open()
+            return
         InfoPopup(title='Change Password',
                   message='Login with your new password.').open()
         self.manager.current = 'login'
