@@ -48,4 +48,4 @@ class AuthService(ApiService):
 
     def change_password(self, new_password):
         json = {'password': new_password}
-        return super().post(path=constants.API_CHANGE_PASSWORD, json=json)
+        return super().post(path=constants.API_AUTH_CHANGE_PASSWORD, json=json)
