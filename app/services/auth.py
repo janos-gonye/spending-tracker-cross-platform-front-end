@@ -45,3 +45,7 @@ class AuthService(ApiService):
             self.__class__._emit_event(event_type=constants.EVENT_LOGIN)
             return True
         return False
+
+    def change_password(self, new_password):
+        json = {'password': new_password}
+        return super().post(path=constants.API_CHANGE_PASSWORD, json=json)
