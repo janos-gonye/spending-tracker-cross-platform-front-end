@@ -20,7 +20,7 @@ class ChangePasswordScreen(Screen):
             InfoPopup(title='Field Error',
                       message=error).open()
             return
-        json, error = self.auth.change_password(new_password)
+        json, error = self.auth.change_password(old_password, new_password)
         if not json:
             InfoPopup(title='Error', message=str(error)).open()
             return
@@ -29,7 +29,7 @@ class ChangePasswordScreen(Screen):
         self.manager.current = 'login'
         self.auth.logout()
 
-    def reset():
+    def reset(self):
         self.password_input.reset()
 
     def on_leave(self):
