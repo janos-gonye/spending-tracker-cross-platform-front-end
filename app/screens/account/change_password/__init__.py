@@ -14,8 +14,13 @@ class ChangePasswordScreen(Screen):
         super().__init__(*args, **kwargs)
         self.auth = AuthService()
 
-    def change_password(self, new_password):
-        valid, error = self.password_input.check()
+    def change_password(self):
+        old_password = self.old_password_input.text
+        new_password = self.new_password_input.password
+        if old_password == '':
+            valid, error = False, 'All fields required.'
+        else:
+            valid, error = self.new_password_input.check()
         if not valid:
             InfoPopup(title='Field Error',
                       message=error).open()
@@ -30,7 +35,8 @@ class ChangePasswordScreen(Screen):
         self.auth.logout()
 
     def reset(self):
-        self.password_input.reset()
+        self.old_password_input.text = ''
+        self.new_password_input.reset()
 
     def on_leave(self):
         self.reset()
