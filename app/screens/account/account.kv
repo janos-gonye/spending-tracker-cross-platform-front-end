@@ -8,10 +8,14 @@
 		AppActionBar:
 			screen_manager: root.manager
 		BoxLayout:
-			size_hint_y: .8
+			size_hint_y: .7
 		BoxLayout:
 			orientation: 'vertical'
-			size_hint_y: .2
+			size_hint_y: .3
+			Button:
+				text: '[b]Change Password[/b]'
+				markup: True
+				on_release: root.manager.current = 'change_password'
 			Button:
 				text: '[b][color=ff0000]Delete Account[/color][/b]'
 				markup: True
