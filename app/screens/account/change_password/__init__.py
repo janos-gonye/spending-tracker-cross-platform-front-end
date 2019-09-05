@@ -31,3 +31,6 @@ class ChangePasswordScreen(Screen):
 
     def reset():
         self.password_input.reset()
+
+    def on_leave(self):
+        self.reset()
