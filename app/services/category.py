@@ -67,3 +67,16 @@ class CategoryService(ApiService):
 
     def _uncache_categories(self, *args):
         CategoryService.categories = None
+
+    def merge(self, subject, target, remove_merged):
+        json = {
+            'subject_id': subject.id,
+            'target_id': target.id,
+            'remove_merged': remove_merged,
+        }
+        if payload, error = super().post(path=constants.API_MERGE_CATEGORIES,
+                                         json=json)
+        if payload is None:
+            raise ConnectionError_(error)
+        CategoryService.categories = None
+        return True
