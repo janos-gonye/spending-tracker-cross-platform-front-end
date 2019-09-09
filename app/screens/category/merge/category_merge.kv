@@ -4,8 +4,8 @@
 
 
 <CategoryMergeScreen>:
-    cat_subject: _cat_subject
-    cat_target: _cat_target
+    cat_subject_select: _cat_subject_select
+    cat_target_select: _cat_target_select
     remove_merged_checkbox: _remove_merged_checkbox
 	BoxLayout:
 		orientation: 'vertical'
@@ -20,7 +20,7 @@
                 text: '[b]Merge the following category[/b]'
                 markup: True
             SelectButton:
-                id: _cat_subject
+                id: _cat_subject_select
                 text: "None Selected"
                 attr_name: 'history'
                 allow_null: False
@@ -29,7 +29,7 @@
                 text: '[b]into category[/b]'
                 markup: True
             SelectButton:
-                id: _cat_target
+                id: _cat_target_select
                 text: "None Selected"
                 attr_name: 'history'
                 allow_null: True
@@ -38,6 +38,7 @@
                 CheckBox:
                     id: _remove_merged_checkbox
                     size_hint_x: 0.382
+                    active: root.remove_merged_default
                 Label:
                     text: "[b]Remove merged category\n(only if category has no subcategories)[/b]"
                     markup: True
