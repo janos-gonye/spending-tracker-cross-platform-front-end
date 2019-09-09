@@ -23,7 +23,7 @@ class CategoryService(ApiService):
                                       json=category.as_json())
         if payload is None:
             raise ConnectionError_(error)
-        CategoryService.categories = None
+        self._uncache_categories()
         return Category.from_json(json=payload['category'])
 
     def get_all(self):
@@ -51,7 +51,7 @@ class CategoryService(ApiService):
                                        json=category.as_json())
         if payload is None:
             raise ConnectionError_(error)
-        CategoryService.categories = None
+        self._uncache_categories()
         return Category.from_json(json=payload['category'])
 
     def delete(self, category):
@@ -59,7 +59,7 @@ class CategoryService(ApiService):
         payload, error = super().delete(path=path)
         if payload is None:
             raise ConnectionError_(error)
-        CategoryService.categories = None
+        self._uncache_categories()
         return Category.from_json(json=payload['category'])
 
     def _get_path(self, category):
@@ -74,9 +74,9 @@ class CategoryService(ApiService):
             'target_id': target.id,
             'remove_merged': remove_merged,
         }
-        if payload, error = super().post(path=constants.API_MERGE_CATEGORIES,
-                                         json=json)
+        payload, error = super().post(path=constants.API_MERGE_CATEGORIES,
+                                      json=json)
         if payload is None:
             raise ConnectionError_(error)
-        CategoryService.categories = None
+        self._uncache_categories()
         return True
