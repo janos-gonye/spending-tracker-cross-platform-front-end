@@ -28,7 +28,7 @@ class CategoryMergeScreen(CategoryScreen):
             InfoPopup(title="Error", message="Both fields required.").open()
             return
         try:
-            self.service.merge(subject.id, target.id, remove_merged)
+            self.service.merge(subject, target, remove_merged)
         except ConnectionError_ as err:
             InfoPopup(title='Error', message=str(err)).open()
             return
