@@ -10,7 +10,6 @@ Builder.load_file('screens/category/merge/category_merge.kv')
 
 
 class CategoryMergeScreen(CategoryScreen):
-    remove_merged_default = False
 
     def on_pre_enter(self):
         super().on_pre_enter()
@@ -35,9 +34,8 @@ class CategoryMergeScreen(CategoryScreen):
     def _merge(self):
         subject = self.cat_subject_select.selected
         target = self.cat_target_select.selected
-        remove_merged = self.remove_merged_checkbox.active
         try:
-            self.service.merge(subject, target, remove_merged)
+            self.service.merge(subject, target)
         except ConnectionError_ as err:
             InfoPopup(title='Error', message=str(err)).open()
             return
@@ -56,7 +54,6 @@ class CategoryMergeScreen(CategoryScreen):
     def reset(self):
         self.cat_subject_select.selected = None
         self.cat_target_select.selected = None
-        remove_merged_checkbox = self.remove_merged_default
 
     def on_leave(self):
         self.reset()
