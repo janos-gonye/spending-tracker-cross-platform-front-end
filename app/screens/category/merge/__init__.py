@@ -25,6 +25,9 @@ class CategoryMergeScreen(CategoryScreen):
             return
         confirm(title='Merging Categories',
                 question=(
+                    'All transactions of the selected category\n'
+                    "and its descendents' transactions will be merged\n"
+                    'into the second selected category.\n'
                     'The result of this action is permanent.\n'
                     'Are you sure you want to continue?'),
                 confirmed=self._merge)
