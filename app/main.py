@@ -10,6 +10,7 @@ from screens.category.create import CategoryCreateScreen
 from screens.category.merge import CategoryMergeScreen
 from screens.category.list import CategoryListScreen
 from screens.category.update import CategoryUpdateScreen
+from screens.forgot_password import ForgotPasswordScreen
 from screens.login import LoginScreen
 from screens.settings import SettingsScreen
 from screens.main import MainScreen
@@ -29,6 +30,7 @@ class SpendingTrackerApp(App):
         self.auth_service = AuthService()
         screen_manager = AdaptiveScreenManager(transition=SwapTransition())
         screen_manager.add_widget(LoginScreen(name='login'))
+        screen_manager.add_widget(ForgotPasswordScreen(name='forgot_password'))
         screen_manager.add_widget(SettingsScreen(name='settings'))
         screen_manager.add_widget(RegistrationScreen(name='registration'))
         screen_manager.add_widget(MainScreen(name='main'))
