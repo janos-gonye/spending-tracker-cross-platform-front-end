@@ -52,3 +52,8 @@ class AuthService(ApiService):
             'new_password': new_password
         }
         return super().post(path=constants.API_AUTH_CHANGE_PASSWORD, json=json)
+
+    def forgot_password(self, email):
+        return super().post(path=constants.API_AUTH_FORGOT_PASSWORD, json={
+            'email': 'email',
+        })
