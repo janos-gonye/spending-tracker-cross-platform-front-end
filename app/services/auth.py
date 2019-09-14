@@ -55,5 +55,5 @@ class AuthService(ApiService):
 
     def forgot_password(self, email):
         return super().post(path=constants.API_AUTH_FORGOT_PASSWORD, json={
-            'email': 'email',
+            'email': email,
         })
