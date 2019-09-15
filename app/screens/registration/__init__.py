@@ -31,7 +31,7 @@ class RegistrationScreen(Screen):
         if json:
             InfoPopup(title='Registration Info',
                       message=json[constants.API_DEFAULT_KEY]).open()
-            self.reset()
+            self.manager.current = 'login'
             return
         InfoPopup(title='Registration Error',
                   message=error).open()
