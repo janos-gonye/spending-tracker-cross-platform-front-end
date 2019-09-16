@@ -8,6 +8,7 @@ You can clone it, build your own instance for many platforms [supported by Kivy]
 #### What you can do with it
  - Create categories and subcategories of any category.
  - Add transactions to categories.
+ - Merge categories into one another.
  - Show statistics and export it to JSON format which sent automatically to your registered email address.
  - Users can register by email address which must be confirmed. So your friends, family members or girlfriend can use it, too.
 
@@ -46,16 +47,12 @@ Run program
 python ./app/main.py
 ```
 
-## Setup for development on Windows
-> Coming soon...
-
-
 ## Configuration
 First time you run the application, you need to configure which server to connect to.  
 You can do this by navigating to the *Settings*, selecting the *protocol* and setting the *host name* and *port* input fields.
 
-## Pictures from the application
-> New style is comming soon...  
+## Some Pictures from the application (some are out-of-date)
+> New style is comming...  
 
 
 ![Login Screen](https://raw.githubusercontent.com/janos-gonye/spending-tracker-cross-platform-front-end/master/screenshots/login_screen.png) 
