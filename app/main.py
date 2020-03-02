@@ -42,15 +42,12 @@ class SpendingTrackerApp(App):
         screen_manager.add_widget(CategoryUpdateScreen(name='category_update'))
         screen_manager.add_widget(CategoryMergeScreen(name='category_merge'))
         screen_manager.add_widget(
-            TransactionListScreen(
-                name='transaction_list'))
+            TransactionListScreen(name='transaction_list'))
         screen_manager.add_widget(
-            TransactionCreateScreen(
-                name='transaction_create'))
+            TransactionCreateScreen(name='transaction_create'))
         screen_manager.add_widget(
-            TransactionUpdateScreen(
-                name='transaction_update'))
-        if self.auth_service.verify_stored_session():
+            TransactionUpdateScreen(name='transaction_update'))
+        if self.auth_service.refresh_session():
             screen_manager.current = 'main'
         else:
             screen_manager.current = 'login'
