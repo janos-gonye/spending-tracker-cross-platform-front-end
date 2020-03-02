@@ -48,17 +48,3 @@ class AuthService(ApiService):
         return super().post(path=constants.API_AUTH_FORGOT_PASSWORD, json={
             'email': email,
         })
-
-    def refresh_session(self):
-        refresh_token = SessionService.refresh_token
-        if refresh_token:
-            json = {'refresh_token': refresh_token}
-            json, error = super().post(path=constants.API_AUTH_REFRESH,
-                                       json=json)
-            if not error:
-                SessionService.refresh(access_token=json['access_token'])
-                return True
-            else:
-                return False
-        else:
-            return False
