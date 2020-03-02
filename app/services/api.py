@@ -12,12 +12,12 @@ from utils import create_url, succ_status
 
 def _attach_token(f):
     """
-    Attach token if exists
+    Attach access token if exists
     """
     @wraps(f)
     def decorated(*args, **kwargs):
-        if SessionService.token:
-            token = 'Bearer {token}'.format(token=SessionService.token)
+        if SessionService.access_token:
+            token = 'Bearer {token}'.format(token=SessionService.access_token)
             if kwargs.get('headers'):
                 kwargs['headers']['Authorization'] = token
             else:
