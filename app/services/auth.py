@@ -28,23 +28,14 @@ class AuthService(ApiService):
         }
         json, error = super().post(path=constants.API_AUTH_LOGIN, json=json)
         if json:
-            SessionService.create(email=email, token=json['token'])
+            SessionService.create(email=email,
+                                  access_token=json['access_token'],
+                                  refresh_token=json['refresh_token'])
         return json, error
 
     def logout(self):
         SessionService.destroy()
         return True
-
-    def verify_stored_session(self):
-        email = SessionService.email
-        token = SessionService.token
-        if email is None or token is None:
-            return False
-        json, error = super().get(path=constants.API_AUTH_VERIFY_TOKEN)
-        if json:
-            self.__class__._emit_event(event_type=constants.EVENT_LOGIN)
-            return True
-        return False
 
     def change_password(self, old_password, new_password):
         json = {
