@@ -30,6 +30,11 @@ class SessionService(EventEmitterMixin):
         cls._store.delete("refresh_token")
         cls._emit_event(event_type=EVENT_LOGOUT)
 
+    @classmethod
+    def refresh(cls, access_token):
+        cls._access_token = access_token
+        cls._store.put("access_token", value=access_token)
+
     @classproperty
     def email(cls):
         if cls._email is not None:
