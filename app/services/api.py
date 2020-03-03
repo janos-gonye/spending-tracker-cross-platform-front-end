@@ -1,3 +1,4 @@
+import json
 from functools import wraps
 from json.decoder import JSONDecodeError
 
@@ -8,7 +9,8 @@ from services.config import ConfigService
 from services.http import HttpService
 from services.mixins import EventEmitterMixin
 from services.session import SessionService
-from utils.url import create_url, succ_status
+from utils.url import (create_url, get_path_from_url,
+                       get_query_params_from_url, succ_status)
 
 
 def _attach_token(f):
@@ -70,11 +72,14 @@ class ApiService(EventEmitterMixin, HttpService):
         return self._handle_request(r)
 
     @_attach_token
-    def resend_request(self, r, method, *args, **kwargs):
-        # url, params, json infó kell
-
-        r = method(path=r.url, params=r.params, json=r.json, *args, **kwargs)
-        return self._handle_request(r)
+    def resend_request(self, r, *args, **kwargs):
+        path = get_path_from_url(r.url)
+        params = get_query_params_from_url(r.url)
+        method = getattr(self, r.method.lower())
+        body = getattr(r, 'body', None)
+        if body:
+            kwargs['json'] = json.loads(body)
+        return method(path=path, params=params, *args, **kwargs)
 
     # Private Methods
     def _get_api_url(self, path):
