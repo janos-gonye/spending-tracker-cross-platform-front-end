@@ -3,6 +3,7 @@ from kivy.storage.jsonstore import JsonStore
 from constants import CONFIG_FILENAME
 from constants import EVENT_LOGIN
 from constants import EVENT_LOGOUT
+from constants import EVENT_ON_SESSION_REFRESH
 from services.mixins import EventEmitterMixin
 from utils.lang import classproperty
 
@@ -34,6 +35,7 @@ class SessionService(EventEmitterMixin):
     def refresh(cls, access_token):
         cls._access_token = access_token
         cls._store.put("access_token", value=access_token)
+        cls._emit_event(event_type=EVENT_ON_SESSION_REFRESH)
 
     @classproperty
     def email(cls):
