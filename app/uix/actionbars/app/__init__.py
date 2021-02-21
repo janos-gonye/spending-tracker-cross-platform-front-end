@@ -21,8 +21,15 @@ class AppActionBar(ActionBar):
         super().__init__(*args, **kwargs)
         self.auth = AuthService()
         EventHandler(event_type=constants.EVENT_LOGIN, callback=self.on_login)
+        EventHandler(event_type=constants.EVENT_ON_SESSION_REFRESH, callback=self.on_session_refresh)
 
     def on_login(self, *args):
+        self.set_email_label()
+
+    def on_session_refresh(self, *args):
+        self.set_email_label()
+
+    def set_email_label(self):
         self.email_label.text = f"[b]{SessionService.email}[/b]"
 
     def logout(self):
