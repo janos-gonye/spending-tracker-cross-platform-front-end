@@ -1,5 +1,5 @@
 import kivy
-kivy.require('1.10.1')
+kivy.require('2.0.0')
 
 from kivy.app import App
 from kivy.uix.screenmanager import SwapTransition
