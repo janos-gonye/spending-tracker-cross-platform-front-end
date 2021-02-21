@@ -17,6 +17,7 @@ class Transaction:
             self.category = category
         else:
             self.category = Category.from_json(json=category)
+        # TODO: Fix timezone bugs
         self.processed_at = timestamp2datetime(timestamp=processed_at)
 
     def as_json(self):
