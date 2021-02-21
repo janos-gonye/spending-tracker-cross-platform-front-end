@@ -18,5 +18,6 @@ API_STATISTICS_EXPORT = API_PATH + '/statistics/export'
 # Event types
 EVENT_LOGIN = 'on_login'
 EVENT_LOGOUT = 'on_logout'
+EVENT_ON_SESSION_REFRESH = 'on_session_refresh'
 EVENT_SETTINGS_CHANGE = 'on_settings_change'
 EVENT_SESSION_EXPIRE = 'on_session_expire'
